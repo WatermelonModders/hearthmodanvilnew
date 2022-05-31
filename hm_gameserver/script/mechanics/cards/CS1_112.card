@@ -1,0 +1,23 @@
+# Holy Nova
+{
+    ".section spell_aoe" : {
+        "code" : "
+            def(card_list_s, allcards)
+            allcards = hsl_board_all_cards($attacker, $heroes_included);
+
+            def(card_list_s, cl)
+            foreach(cl, allcards) {
+                if(cl->card->controller == $attacker->controller) {
+                    cl->card->receive.heal = 2;
+                } else {
+                    cl->card->receive.damage = 2;
+                }
+            }
+
+            hsl_attack_aoe($attacker, allcards)
+
+            hsl_link_target($attacker, allcards)
+        ",
+        "target": "$auto"
+    }
+}

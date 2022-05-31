@@ -1,0 +1,11 @@
+# Shadow Bolt
+{
+    ".section spell" : {
+        "code" : "
+            $defender->receive.damage = 4;
+            hsl_attack($attacker, $defenders);
+        ",
+
+        "target": "$minions"
+    }
+}

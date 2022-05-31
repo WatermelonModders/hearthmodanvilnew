@@ -1,0 +1,9 @@
+# Sprint
+{
+    ".section buff" : {
+        "code": "
+            hsl_draw_cards($player, $deck_player, draw_card, 4)
+        ",
+        "target" : "$auto"
+    }
+}

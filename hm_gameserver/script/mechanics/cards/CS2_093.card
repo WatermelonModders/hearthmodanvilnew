@@ -1,0 +1,18 @@
+# Consecration
+{
+    ".section spell_aoe" : {
+        "code" : "
+            def(card_list_s, e)
+            e = hsl_board_enemy_cards($attacker, $heroes_included);
+
+            def(card_list_s, cl)
+            foreach(cl, e) {
+                cl->card->receive.damage = 2;
+            }
+
+            hsl_attack_aoe($attacker, e)
+            hsl_link_target($attacker, e)
+        ",
+        "target": "$auto"
+    }
+}

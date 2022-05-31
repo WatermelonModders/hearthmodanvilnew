@@ -1,0 +1,11 @@
+# Corruption
+{
+    ".section buff" : {
+        "code": "
+            hsl_buff_corrupt_expire(2, $defender);
+            hsl_add_attachment($player, $attacker, $defender, 2);
+        ",
+
+        "target": "$minions"
+    }
+}

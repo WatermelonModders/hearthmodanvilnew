@@ -1,0 +1,20 @@
+# Darkscale Healer
+{
+    ".section battlecry" : {
+        "code" : "
+            def(card_list_s, allcards)
+            allcards = hsl_board_friendly_cards($attacker, $heroes_included);
+
+            def(card_list_s, cl)
+            foreach(cl, allcards) {
+                cl->card->receive.heal = 2;
+            }
+
+            hsl_attack_aoe(attacker, allcards)
+
+            hsl_link_target(attacker, allcards)
+        ",
+
+        "target": "$auto"
+    }
+}

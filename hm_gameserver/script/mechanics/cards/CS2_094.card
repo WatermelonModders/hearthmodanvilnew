@@ -1,0 +1,13 @@
+# Hammer of Wrath
+{
+    ".section spell" : {
+        "code" : "
+            $defender->receive.damage = 3;
+            hsl_attack($attacker, $defenders);
+
+            hsl_draw_cards($player, $deck_player, draw_card, 1)
+        ",
+
+        "target": "$all"
+    }
+}

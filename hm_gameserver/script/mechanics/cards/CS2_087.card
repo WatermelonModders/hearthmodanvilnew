@@ -1,0 +1,12 @@
+# Blessing of Might
+{
+    ".section buff" : {
+        "code": "
+            hsl_change_attack($defender, 3)
+            hsl_add_signle_attachment($player, $deck_player, $attacker, $defender);
+        ",
+
+        "target": "$minions"
+    }
+}
+

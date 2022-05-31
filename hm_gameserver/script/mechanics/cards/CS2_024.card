@@ -1,0 +1,22 @@
+# Frostbolt
+{
+    ".section spell" : {
+        "code" : "
+            $defender->receive.damage = 3;
+            hsl_attack($attacker, $defenders);
+        ",
+
+        "target": "$all"
+    },
+
+    ".section attack_effect" : {
+        "code" : "
+            hsl_freeze($attacker, $defender)
+        "
+    },
+
+    ".section properties" : {
+        "all": [ "freeze" ]
+    }
+}
+

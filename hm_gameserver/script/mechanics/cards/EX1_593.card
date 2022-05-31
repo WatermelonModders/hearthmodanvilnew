@@ -1,0 +1,10 @@
+# Sinister Strike
+{
+    ".section battlecry" : {
+        "code" : "
+            hsl_attack_bc($attacker, $enemy_hero, 3)
+        ",
+
+        "target": "$auto"
+    }
+}

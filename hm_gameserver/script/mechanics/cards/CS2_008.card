@@ -1,0 +1,12 @@
+# Moonfire
+{
+    ".section spell" : {
+        "code" : "
+            /* defender is linked by default */
+            $defender->receive.damage = 1;
+            hsl_attack($attacker, $defenders);
+        ",
+
+        "target": "$all"
+    }
+}

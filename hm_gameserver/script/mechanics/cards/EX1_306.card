@@ -1,0 +1,10 @@
+# Succubus
+{
+    ".section battlecry" : {
+        "code" : "
+            hsl_discard_random_hand($deck_player, 1, holder)
+        ",
+
+        "target": "$auto"
+    }
+}

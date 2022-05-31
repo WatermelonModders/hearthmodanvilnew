@@ -1,0 +1,9 @@
+# Light's Justice
+{
+    ".section weapon" : {
+        "code" : "
+            hsl_give_weapon($deck_player);
+        "
+    }
+}
+

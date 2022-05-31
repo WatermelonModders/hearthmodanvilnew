@@ -1,0 +1,10 @@
+# Shadow Word: Pain
+{
+    ".section buff" : {
+        "code" : "
+            hsl_destroy($defender);
+        ",
+
+        "target": "$attack3less_minions"
+    }
+}

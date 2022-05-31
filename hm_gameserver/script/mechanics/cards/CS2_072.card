@@ -1,0 +1,11 @@
+# Backstab
+{
+    ".section spell" : {
+        "code" : "
+            hsl_receive_damage($defender, 2);
+            hsl_attack($attacker, $defenders);
+        ",
+
+        "target": "$undamaged_minions"
+    }
+}

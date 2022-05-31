@@ -1,0 +1,10 @@
+# Magma Rager
+{
+    ".section attack" : {
+        "code" : "
+            hsl_attack($attacker, $defenders);
+        ",
+
+        "target" : "$enemy_minions"
+    }
+}

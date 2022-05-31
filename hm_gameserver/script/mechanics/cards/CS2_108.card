@@ -1,0 +1,10 @@
+# Execute
+{
+    ".section buff" : {
+        "code" : "
+            hsl_destroy($defender);
+        ",
+
+        "target": "$damaged_minions"
+    }
+}

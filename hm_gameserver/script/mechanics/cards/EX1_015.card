@@ -1,0 +1,10 @@
+# Novice Engineer
+{
+    ".section battlecry" : {
+        "code" : "
+            hsl_draw_cards($player, $deck_player, draw_card, 1)
+        ",
+
+        "target": "$auto"
+    }
+}

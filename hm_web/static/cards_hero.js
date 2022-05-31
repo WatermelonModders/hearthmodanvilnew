@@ -1,0 +1,16 @@
+var cards_hero = [
+["HERO_01", "# Warrior"], 
+["HERO_02", "# Shamman"], 
+["HERO_03", "# Rogue"], 
+["HERO_04", "# Paladin"], 
+["HERO_05", "# Hunter"], 
+["HERO_06", "# Druid"], 
+["HERO_07", "# Warlock"], 
+["HERO_08", "# Mage"], 
+["HERO_09", "# Priest"], 
+["HERO_01a", "# King of Khaz Modan"], 
+["HERO_04a", "# Blood Knight Matriarch"], 
+["HERO_05a", "# Alleria Windranger"], 
+["HERO_08a", "# Guardian Medivh"], 
+["HERO_08b", "# Khadgar"], 
+];

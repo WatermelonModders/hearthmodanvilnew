@@ -1,0 +1,10 @@
+# Polymorph
+{
+    ".section buff" : {
+        "code": "
+            hsl_transform($attacker, $defender, \"CS2_tk1\");
+        ",
+
+        "target": "$enemy_minions"
+    }
+}

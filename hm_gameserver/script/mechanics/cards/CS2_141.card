@@ -1,0 +1,14 @@
+# Ironforge Rifleman
+{
+    ".section battlecry" : {
+        "code" : "
+            def(card_s, def)
+            def = hsl_card($target);
+            if(def) {
+                hsl_attack_bc($attacker, def, 1)
+            }
+        ",
+
+        "target": "$all"
+    }
+}

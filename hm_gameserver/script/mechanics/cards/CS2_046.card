@@ -1,0 +1,17 @@
+# Bloodlust
+{
+    ".section buff" : {
+        "code": "
+            def(card_list_s, all)
+            all = hsl_board_friendly_cards($attacker, $heroes_excluded)
+
+            def(card_list_s, itm)
+            foreach(itm, all) {
+                hsl_buff_attack_expire(1, itm->card, 3);
+                hsl_add_attachment($player, $attacker, itm->card, 1);
+            }
+        ",
+
+        "target": "$auto"
+    }
+}

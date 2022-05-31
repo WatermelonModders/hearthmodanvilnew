@@ -1,0 +1,12 @@
+# Rockbiter Weapon
+{
+    ".section buff" : {
+        "code": "
+            hsl_buff_attack_expire(1, $defender, 3);
+            hsl_add_attachment($player, $attacker, $defender, 1);
+        ",
+
+        "target": "$auto"
+    }
+}
+

@@ -1,0 +1,18 @@
+# Savage Roar
+{
+    ".section buff" : {
+        "code": "
+            def(card_list_s, all)
+            all = hsl_board_friendly_cards($attacker, $heroes_included);
+
+            def(card_list_s, itm)
+            foreach(itm, all) {
+                hsl_buff_attack_expire(1, itm->card, 2);
+                hsl_add_attachment($player, $attacker, itm->card, 1);
+                hsl_add_defender(itm->card, holder)
+            }
+        ",
+
+        "target": "$auto"
+    }
+}

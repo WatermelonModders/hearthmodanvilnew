@@ -1,0 +1,12 @@
+# Ancestral Healing
+{
+    ".section buff" : {
+        "code": "
+            hsl_set_fullhealth($defender)
+            hsl_set_taunt($defender)
+        ",
+
+        "target": "$minions"
+    }
+}
+

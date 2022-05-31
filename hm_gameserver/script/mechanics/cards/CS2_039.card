@@ -1,0 +1,10 @@
+# Windfury
+{
+    ".section buff" : {
+        "code": "
+            setflag($defender, CARD_WINDFURY)
+        ",
+
+        "target": "$minions"
+    }
+}

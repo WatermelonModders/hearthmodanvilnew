@@ -1,0 +1,9 @@
+# Arcane Intellect
+{
+    ".section buff" : {
+        "code": "
+            hsl_draw_cards($player, $deck_player, draw_card, 2)
+        ",
+        "target" : "$auto"
+    }
+}

@@ -1,0 +1,14 @@
+# Huffer
+{
+    ".section attack" : {
+        "code" : "
+            hsl_attack($attacker, $defenders);
+        ",
+
+        "target" : "$enemy_minions"
+    },
+
+    ".section properties" : {
+        "all": [ "charge" ]
+    }
+}

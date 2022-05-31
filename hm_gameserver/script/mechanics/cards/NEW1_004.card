@@ -1,0 +1,22 @@
+# Vanish
+{
+    ".section buff" : {
+        "code": "
+                /*
+                def(card_list_s, itm)
+                foreach(itm, $defenders) {
+                    unsetflag(itm->card, CARD_BOARD)
+                    setflag(itm->card, CARD_HAND)
+
+                    if(controller_player(itm->card)) {
+                        itm->card->zone_position = ++($deck_player->handposition);
+                    } else {
+                        itm->card->zone_position = ++($deck_opponent->handposition);
+                    }
+                }
+                */
+
+        ",
+        "target": "$auto"
+    }
+}

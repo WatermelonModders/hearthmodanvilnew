@@ -1,0 +1,11 @@
+# Heroic Strike
+{
+    ".section buff" : {
+        "code": "
+            hsl_buff_attack_expire(1, $ally_hero, 4);
+            hsl_add_attachment($player, $attacker, $ally_hero, 1);
+
+        ",
+        "target": "$auto"
+    }
+}

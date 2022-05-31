@@ -1,0 +1,15 @@
+# Voidwalker
+{
+    ".section attack" : {
+        "code" : "
+            hsl_attack($attacker, $defenders);
+        ",
+
+        "target" : "$minions"
+    },
+
+    ".section properties" : {
+        "all": [ "taunt" ]
+    }
+}
+

@@ -1,0 +1,10 @@
+# HERO_01
+{
+    ".section attack" : {
+        "code" : "
+            hsl_attack($attacker, $defenders);
+        ",
+
+        "target" : "$all"
+    }
+}

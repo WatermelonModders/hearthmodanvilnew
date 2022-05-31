@@ -1,0 +1,14 @@
+#!/bin/sh
+
+@globals
+$player, $opponent
+$player_deck, $opponent_deck
+$none, $all, $minions, $enemy_minions, $enemy_hero, $enemies, $ally_minions, $ally_hero, $allies, $aoe
+#.random: $r_all, $r_enemy_minions, $r_enemies, $r_ally_minions, $r_allies
+$zone_play, $zone_deck, $zone_hand, $zone_graveyard, $zone_discard, $zone_setaside, $zone_secret
+$attacker, $defenders, $turn
+
+@functions
+struct card_s *draw_card(dst, name, amount)
+void buff_attack_expire(round, defender, attack)
+void add_attachment(player)

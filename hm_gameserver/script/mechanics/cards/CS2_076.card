@@ -1,0 +1,10 @@
+# Assassinate
+{
+    ".section buff" : {
+        "code" : "
+            hsl_destroy($defender);
+        ",
+
+        "target": "$enemy_minions"
+    }
+}

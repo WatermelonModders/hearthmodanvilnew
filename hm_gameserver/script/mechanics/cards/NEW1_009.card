@@ -1,0 +1,37 @@
+# Healing Totem
+{
+    ".section endturn" : {
+        "code" : "
+            def(card_list_s, all);
+            all = hsl_board_friendly_cards_wattacker($heroes_excluded);
+
+            def(card_s, found);
+
+            def(card_list_s, c);
+            foreach(c, all) {
+                if(hsl_cmp_cardname(c, \"NEW1_009\")) {
+                    found = c->card;
+                    break;
+                }
+            }
+
+            if(found != NULL) {
+                def(card_list_s, filter);
+                filter = hsl_board_friendly_cards(found, $heroes_excluded);
+
+                foreach(c, filter) {
+                    /* exclude self */
+                    if(c->card == found) continue;
+
+                    hsl_receive_heal(c->card, 1);
+                    entity_attack(p, found, c->card);
+                }
+
+                found->target.card = all;
+
+                flag(&found->state, MECHANICS_TURN_TRIGGER, FLAG_SET);
+            }
+        "
+    }
+}
+

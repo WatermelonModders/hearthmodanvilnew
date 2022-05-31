@@ -1,0 +1,16 @@
+# Drain Life
+{
+    ".section spell_aoe" : {
+        "code": "
+            hsl_receive_damage($defender, 2);
+
+            hsl_receive_heal($ally_hero, 2);
+            hsl_add_target($ally_hero, holder);
+
+            hsl_attack($attacker, $defenders)
+        ",
+
+        "target": "$enemy"
+    }
+}
+

@@ -1,0 +1,8 @@
+# Fiery War Axe
+{
+    ".section weapon" : {
+        "code" : "
+            hsl_give_weapon($deck_player);
+        "
+    }
+}

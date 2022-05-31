@@ -1,0 +1,17 @@
+# Mirror Image
+{
+    ".section spell_aoe" : {
+        "code": "
+            int i;
+            for(i = 0; i < 2; i++) {
+                hsl_summon_card($deck_player, \"CS2_mirror\", cardholder)
+            }
+
+            /* this just does the routine (destroying it etc..) with a played card */
+            hsl_attack_aoe($attacker, $defenders)
+        ",
+
+        "target": "$auto"
+    }
+}
+

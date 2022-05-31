@@ -1,0 +1,10 @@
+# Murloc Tidehunter
+{
+    ".section battlecry" : {
+        "code" : "
+            hsl_summon_card($deck_player, \"EX1_506a\", cardholder)
+        ",
+
+        "target": "$auto"
+    }
+}

@@ -1,0 +1,12 @@
+# Fireball
+{
+    ".section spell" : {
+        "code" : "
+            $defender->receive.damage = 6;
+            hsl_attack($attacker, $defenders);
+        ",
+
+        "target": "$all"
+    }
+}
+

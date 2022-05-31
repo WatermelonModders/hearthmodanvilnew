@@ -1,0 +1,12 @@
+# Blessing of Kings
+{
+    ".section buff" : {
+        "code": "
+            hsl_change_attack($defender, 4)
+            hsl_change_health($defender, 4)
+            hsl_add_signle_attachment($player, $deck_player, $attacker, $defender);
+        ",
+
+        "target": "$minions"
+    }
+}

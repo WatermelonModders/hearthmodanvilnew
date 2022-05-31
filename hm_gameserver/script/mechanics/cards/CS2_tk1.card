@@ -1,0 +1,10 @@
+# Sheep
+{
+    ".section attack" : {
+        "code" : "
+            hsl_attack($attacker, $defenders);
+        ",
+
+        "target" : "$minions"
+    }
+}

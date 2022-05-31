@@ -1,0 +1,14 @@
+# Claw
+{
+    ".section buff" : {
+        "code": "
+            int change = 2;
+            hsl_buff_attack_expire(1, $ally_hero, change);
+            hsl_change_armor($ally_hero, change)
+            hsl_add_attachment($player, $attacker, $ally_hero, 1);
+            hsl_add_target($ally_hero, holder)
+        ",
+
+        "target": "$auto"
+    }
+}

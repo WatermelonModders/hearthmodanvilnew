@@ -1,0 +1,16 @@
+# Frostwolf Warlord
+{
+    ".section battlecry" : {
+        "code" : "
+            int num_minions = hsl_board_minions_count($deck_player, $attacker);
+            if(num_minions > 0) {
+                hsl_change_health($attacker, num_minions)
+                hsl_change_attack($attacker, num_minions)
+
+                hsl_add_signle_attachment($player, $deck_player, $attacker, $attacker);
+            }
+        ",
+
+        "target": "$auto"
+    }
+}

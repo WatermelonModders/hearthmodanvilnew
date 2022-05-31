@@ -1,0 +1,21 @@
+# Swipe
+{
+    ".section spell_aoe" : {
+        "code": "
+            def(card_list_s, all)
+            all = hsl_board_enemy_cards($defender, $heroes_included);
+            $defender->receive.damage = 4;
+
+            def(card_list_s, itm)
+            foreach(itm, all) {
+                itm->card->receive.damage = 1;
+                hsl_add_target(itm->card, holder);
+            }
+
+            hsl_attack($attacker, $defenders)
+        ",
+
+        "target": "$enemy"
+    }
+}
+

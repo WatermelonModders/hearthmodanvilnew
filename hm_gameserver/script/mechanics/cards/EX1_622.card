@@ -1,0 +1,11 @@
+# Shadow Word: Death
+{
+    ".section buff" : {
+        "code" : "
+            hsl_destroy($defender);
+        ",
+
+        "target": "$attack5more_minions"
+    }
+}
+

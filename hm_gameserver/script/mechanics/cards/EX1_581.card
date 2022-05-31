@@ -1,0 +1,13 @@
+# Sap
+{
+    ".section buff" : {
+        "code": "
+            unsetflag($defender, CARD_BOARD)
+            setflag($defender, CARD_HAND)
+
+            $defender->zone_position = ++($deck_opponent->handposition);
+        ",
+
+        "target": "$enemy_minions"
+    }
+}

@@ -1,0 +1,12 @@
+# Shield Block
+{
+    ".section buff" : {
+        "code": "
+            hsl_change_armor($ally_hero, 5);
+            hsl_add_target($ally_hero, holder);
+            hsl_draw_cards($player, $deck_player, draw_card, 1)
+        ",
+
+        "target": "$auto"
+    }
+}

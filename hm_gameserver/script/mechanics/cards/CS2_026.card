@@ -1,0 +1,15 @@
+# Frost Nova
+{
+    ".section spell_aoe" : {
+        "code" : "
+            def(card_list_s, e)
+            e = hsl_board_enemy_cards($attacker, $heroes_excluded);
+
+            hsl_attack_aoe($attacker, e)
+            hsl_link_target($attacker, e)
+        ",
+        "target": "$auto"
+    }
+}
+
+

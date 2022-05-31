@@ -1,0 +1,10 @@
+# Razorfen Hunter
+{
+    ".section battlecry" : {
+        "code" : "
+            hsl_summon_card($deck_player, \"CS2_boar\", cardholder)
+        ",
+
+        "target" : "$auto"
+    }
+}

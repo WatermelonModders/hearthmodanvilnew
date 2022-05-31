@@ -1,0 +1,16 @@
+# Sacrificial Pact
+{
+    ".section spell_aoe" : {
+        "code": "
+            hsl_destroy($defender);
+
+            hsl_receive_heal($ally_hero, 5);
+            hsl_add_target($ally_hero, holder);
+
+            hsl_attack($attacker, $defenders)
+        ",
+
+        "target": "$demon"
+    }
+}
+

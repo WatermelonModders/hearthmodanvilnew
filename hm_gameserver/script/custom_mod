@@ -1,0 +1,731 @@
+#!/bin/sh
+# Game entity
+name="Game Entity" card=GAME_ENTITY tags={10:85,20:1,49:1,198:4,202:1,204:2}
+
+# Mana Card
+name="Coin" card=GAME_005 tags={49:3,202:5,313:1}
+
+# Player1
+name="Player1" card=PLAYER1 tags={7:75,17:1,27:64,28:10,29:4,30:1,31:1,49:1,176:10,202:2,272:1,399:4}
+
+# Player2
+name="Player2" card=PLAYER2 tags={7:75,17:1,23:1,24:1,27:66,28:10,29:4,30:2,31:2,49:1,176:10,202:2,272:1,399:3}
+
+# Power of the Horde
+name="Kill Roshan" card=PRO_001c tags={183:11,202:5,48:30,330:0,331:0,} custom=1
+
+# The Sentinel
+name="The Sentinel" card=TB_SPT_Boss tags={183:18,202:3,47:0,45:30,380:39537,} custom=1
+
+# The Scourge
+name="The Scourge  " card=LOEA04_01 tags={183:20,45:30,330:0,331:0,380:16231,202:3,} custom=1
+
+# Enrage
+name="Tether" card=NAX12_04e tags={183:12,202:6,330:0,331:0,338:1,} custom=1 flags=(CARD_ATTACHMENT)
+
+# Lantern of Power
+name="Grow" card=LOEA16_3e tags={183:20,202:6,330:0,331:0,} custom=1 flags=(CARD_ATTACHMENT)
+
+# Lothar's Left Greave
+name="Arcane Boots" card=LOEA16_9 tags={183:20,202:5,48:0,330:0,331:0,} custom=1
+
+# Mountain Giant
+name="Tiny" card=EX1_105 tags={183:3,202:4,201:3,203:5,48:1,47:0,45:1,251:6,321:1,} custom=1 attachment=LOEA16_3e
+
+# Youthful Brewmaster
+name="Youthful Brewmaster" card=EX1_049 tags={183:3,202:4,201:2,203:1,48:2,47:3,45:2,251:6,321:1,330:0,331:0,218:1,} custom=1
+
+# Brann Bronzebeard
+name="Karroch, the Beastmaster" card=LOE_077 tags={183:20,202:4,203:5,114:1,321:1,48:5,47:2,45:3,330:0,331:0,362:0,} custom=1
+
+# Abomination
+name="Pudge, the Butcher" card=EX1_097 tags={183:3,202:4,201:3,203:3,48:5,47:0,45:4,251:6,321:1,330:0,331:0,190:0,217:0,} custom=1
+
+# Piloted Sky Golem
+name="Boush, the Tinker" card=GVG_105 tags={183:13,321:1,48:3,202:4,203:4,47:1,45:2,200:17,330:0,331:0,217:1,} custom=1
+
+# Icehowl
+[AT_125]
+
+# Skeleton
+name="Skeleton" card=NAX4_03H tags={183:12,202:4,48:7,47:6,45:5,} custom=1
+
+# Skeleton Knight
+name="The Skeleton King" card=AT_128 tags={183:15,321:1,203:5,202:4,48:7,47:6,45:5,114:1,330:0,331:0,217:1,} custom=1
+
+# Deathwing
+name="Deathwing" card=NEW1_030 tags={183:3,203:5,202:4,48:10,47:12,45:12,200:24,114:1,321:1,330:0,331:0,218:1,} custom=1
+
+# Treant
+name="Treant" card=EX1_158t tags={183:3,202:4,201:3,199:2,251:1,47:1,45:2,48:1,330:0,331:0,} custom=1
+
+# Velen's Chosen
+name="Guardian Greaves" card=GVG_010 tags={183:13,203:1,202:5,48:0,199:6,321:1,330:0,331:0,} custom=1
+
+# Cabalist's Tome
+name="Arcane Books" card=OG_090 tags={183:21,321:1,203:4,202:5,48:0,199:4,330:0,331:0,} custom=1
+
+# Seal of Champions
+name="Black King Bar" card=AT_074 tags={183:15,321:1,203:1,202:5,48:2,199:5,330:0,331:0,} custom=1 attachment=AT_074e2
+
+# Seal of Champions E
+name="Magic Immunity" card=AT_074e2 tags={183:15,202:6,199:5,330:0,331:0,} custom=1 flags=(CARD_ATTACHMENT)
+
+# Dagon
+name="Dagon" card=BRMA11_3 tags={183:14,202:5,48:1,47:1,330:0,331:0,} custom=1
+
+# Sparring Partner
+[AT_069]
+
+# Divine Rapier E
+name="Divine Rapier" card=FP1_020e tags={183:12,202:6,199:5,330:1,331:1,} custom=1 flags=(CARD_ATTACHMENT)
+
+# Desolator
+name="Desolator" card=LOEA06_03 tags={183:20,202:5,48:2,330:0,331:0,} custom=1 attachment=LOEA06_03e
+
+# Desolator E
+name="Desolate" card=LOEA06_03e tags={183:20,202:6,330:0,331:0,} custom=1 flags=(CARD_ATTACHMENT)
+
+# Rooted
+name="Level 2" card=EX1_178ae tags={183:3,202:6,199:2,330:1,331:1,} custom=1 flags=(CARD_ATTACHMENT)
+
+# Inner Rage
+name="Satanic" card=EX1_607 tags={183:3,203:5,202:5,48:3,201:3,199:10,321:1,} custom=1 attachment=EX1_607e
+
+# Angry Chicken
+name="Courier" card=EX1_009 tags={321:1,183:3,203:3,202:4,48:1,47:2,45:1,330:0,331:0,200:20,212:1,} custom=1
+
+# Repel
+[LOEA16_20]
+
+# Cursed Blade
+name="Echo Sabre  " card=LOE_118 tags={183:20,321:1,203:3,202:7,48:2,47:0,187:3,199:10,330:0,331:0,} custom=1
+
+# Shadowflame
+name="Requiem of Souls" card=EX1_303 tags={183:3,202:5,201:3,199:9,203:3,48:4,251:1,268:2,321:1,330:0,331:0,370:1,} custom=1
+
+# Demonfire E
+name="Necromastery" card=EX1_596e tags={183:3,203:1,202:6,48:0,201:3,199:9,330:1,331:1,} custom=1 flags=(CARD_ATTACHMENT)
+
+# Void Crusher
+name="Eidolon" card=AT_023 tags={183:15,321:1,203:3,202:4,48:2,47:2,45:2,199:9,200:15,330:0,331:0,403:0,} custom=1
+
+# Forbidden Shaping
+name="Demonic Conversion" card=OG_101 tags={183:21,321:1,203:4,202:5,48:3,199:6,330:0,331:0,} custom=1
+
+# Charge E
+name="Level 1" card=CS2_103e2 tags={183:2,202:6,199:10,330:0,331:0,} custom=1 flags=(CARD_ATTACHMENT)
+
+# Inner Rage E
+name="Satanic" card=EX1_607e tags={183:3,202:6,199:10,330:1,331:1,} custom=1 flags=(CARD_ATTACHMENT)
+
+# Inner Fire E
+name="Level 3" card=CS1_129e tags={183:3,202:6,199:6,330:1,331:1,} custom=1 flags=(CARD_ATTACHMENT)
+
+# Twisting Nether
+name="The Black Hole" card=EX1_312 tags={183:3,202:5,201:3,199:9,203:4,48:8,251:1,268:2,321:1,330:0,331:0,} custom=1
+
+# Mal Ganis
+[GVG_021]
+
+# Lay on Hands
+name="Purification" card=EX1_354 tags={183:3,202:5,201:3,199:5,203:4,48:8,251:1,321:1,330:0,331:0,} custom=1
+
+# Flame Lance
+name="Laguna Blade" card=AT_001 tags={183:15,321:1,203:1,202:5,48:8,199:4,47:10,330:0,331:0,} custom=1
+
+# Dragon's Breath
+name="Dragon's Breath" card=BRM_003 tags={183:14,321:1,203:1,202:5,48:3,199:4,47:2,330:0,331:0,} custom=1
+
+# Confessor Paletress
+name="Lina" card=AT_018 tags={183:15,321:1,203:5,202:4,48:2,47:1,45:14,199:6,114:1,330:0,331:0,200:16,} custom=1 level2=BRM_003 level3=AT_001
+
+# Lightning Storm
+name="God's Wrath" card=EX1_259 tags={183:3,202:5,201:3,199:8,203:3,48:6,251:1,47:3,321:1,330:0,331:0,215:1,} custom=1
+
+# Forked Lightning
+name="Forked Lightning" card=EX1_251 tags={183:3,202:5,201:3,199:8,203:1,48:2,251:1,47:1,321:1,330:0,331:0,215:1,} custom=1
+
+# Archmage Antonidas
+name="Zeus" card=EX1_559 tags={183:3,203:5,202:4,48:3,47:1,45:15,201:3,251:3,199:4,114:1,321:1,330:0,331:0,32:1,} custom=1 level2=EX1_251 level3=EX1_259
+
+# Commanding Shout
+name="Warcry" card=NEW1_036 tags={183:3,203:3,202:5,48:1,199:10,321:1,330:0,331:0,} custom=1 attachment=NEW1_036e
+
+# Commanding Shout
+name="Sven: Warcry" card=NEW1_036e tags={183:3,202:6,199:10,330:0,331:0,338:1,} custom=1 flags=(CARD_ATTACHMENT)
+
+# Druid of the Claw
+name="Ursa" card=EX1_165t2 tags={183:3,203:5,202:4,48:4,47:3,45:21,199:2,330:0,331:0,200:20,190:0,} custom=1 level2=CS2_012 level3=CS2_011
+
+# Open Wounds
+name="Wounded" card=AT_039e tags={183:15,202:6,199:2,330:0,331:0,338:1,} custom=1 flags=(CARD_ATTACHMENT)
+
+# Divine Strength
+name="God's Strength" card=OG_223 tags={183:21,321:1,203:1,202:5,48:3,199:5,} custom=1  attachment=OG_223e
+
+# Optimism
+name="Sven: God's Strength" card=OG_223e tags={183:21,202:6,} custom=1 flags=(CARD_ATTACHMENT)
+
+# Tirion Fordring
+name="Sven" card=EX1_383 tags={183:3,203:5,202:4,48:3,47:3,45:16,201:3,199:5,251:1,114:1,321:1,330:0,331:0,194:0,190:0,217:0,} custom=1 level2=NEW1_036 level3=OG_223
+
+# Windfury
+[CS2_039] 
+
+# Corruption
+name="Corruption" card=CS2_063 tags={183:2,202:5,201:3,199:9,203:1,48:1,251:1,321:1,330:0,331:0,} custom=1 attachment=CS2_063e
+# Corruption E
+name="Corruption" card=CS2_063e tags={183:2,202:6,199:9,330:2,331:2,} custom=1 flags=(CARD_ATTACHMENT)
+
+# Hunter's Mark
+[CS2_084] attachment=CS2_084e
+# Hunter's Mark E
+name="Hunter's Mark E" card=CS2_084e tags={12:1,49:6,202:6} flags=(CARD_ATTACHMENT)
+
+# Assasinate
+name="Assassinate" card=CS2_076 tags={183:2,202:5,201:3,199:7,203:2,48:5,251:6,268:2,321:1,330:0,331:0,} custom=1
+
+# Shadow Word: Death
+[EX1_622]
+
+# Shadow Word: Pain
+name="Shadow Word: Pain" card=CS2_234 tags={321:1,183:2,203:2,202:5,48:2,199:6,330:0,331:0,} custom=1
+
+# Execute
+name="Culling Blade" card=CS2_108 tags={183:2,202:5,201:3,199:10,203:2,48:3,251:1,268:2,321:1,330:0,331:0,} custom=1
+
+# Illidan
+name="Terrorblade" card=EX1_614 tags={183:3,203:5,202:4,48:6,45:1,47:5,201:3,251:6,114:1,321:1,330:0,331:0,200:15,32:1,} custom=1
+
+# Hand of Protection
+name="Guardian Angel" card=EX1_371 tags={183:2,203:2,202:5,48:2,199:5,201:3,251:1,321:1,330:0,331:0,} custom=1
+
+# Polymorph
+[CS2_022] attachment=CS2_022e
+name="Polymorph E" card=CS2_022e tags={12:1,49:6,202:6} flags=(CARD_ATTACHMENT)
+
+# Hex
+[EX1_246] attachment=EX1_246e
+# Hex E
+name="Hex E" card="EX1_246e" tags={12:1,49:6,202:6} flags=(CARD_ATTACHMENT)
+
+# Blessing of Kings
+[CS2_092] attachment=CS2_092e
+# Blessing of Kings E
+name="Blessing of Kings E" card="CS2_092e" tags={12:1,49:6,202:6} flags=(CARD_ATTACHMENT)
+
+# Blessing of Might
+[CS2_087] attachment=CS2_087e
+# Blessing of Might E
+name="Blessing of Might E" card="CS2_087e" tags={12:1,49:6,202:6} flags=(CARD_ATTACHMENT)
+
+# Power Word: Shield
+[CS2_004] attachment=CS2_004e
+# Power Word: Shield E
+name="Power Word: Shield E" card="CS2_004e" tags={12:1,49:6,202:6} flags=(CARD_ATTACHMENT)
+
+# Charge
+[CS2_103] attachment=CS2_103e2
+# Charge E
+#name="Charge E" card="CS2_103e2" tags={12:1,49:6,202:6} flags=(CARD_ATTACHMENT)
+
+# Mark of the Wild
+[CS2_009] attachment=CS2_009e
+# Mark of the Wild E
+name="Mark of the Wild E" card="CS2_009e" tags={12:1,49:6,202:6} flags=(CARD_ATTACHMENT)
+
+# Ancestral Healing
+[CS2_041] attachment=CS2_041e
+# Ancestral Infusion
+name="Ancestral Infusion" card="CS2_041e" tags={12:1,49:6,202:6} flags=(CARD_ATTACHMENT)
+
+# Rockbiter Weapon
+[CS2_045] attachment=CS2_045e
+# Rockbiter Weapon E
+name="Rockbiter Weapon E" card=CS2_045e tags={12:1,49:6,202:6} flags=(CARD_ATTACHMENT)
+
+# Divine spirit
+[CS2_236] 
+
+# Bloodlust
+[CS2_046] attachment=CS2_046e
+# Bloodlust E
+name="Bloodlust E" card=CS2_046e tags={12:1,49:6,202:6} flags=(CARD_ATTACHMENT)
+
+# Claw
+[CS2_005] attachment=CS2_005o
+# Claw E
+name="Claw E" card=CS2_005o tags={12:1,49:6,202:6} flags=(CARD_ATTACHMENT)
+
+# Heroic Strike
+[CS2_105] attachment=CS2_105e
+# Heroic Strike E
+name="Heroic Strike E" card=CS2_105e tags={12:1,49:6,202:6} flags=(CARD_ATTACHMENT)
+
+# Savage Roar
+name="Enrage" card=CS2_011 tags={183:2,202:5,201:3,199:2,203:1,48:3,251:1,321:1,330:0,331:0,} custom=1 attachment=CS2_011o
+# Savage Roar E
+name="Enraged" card=CS2_011o tags={183:2,202:6,199:2,330:1,331:1,338:1,} custom=1 flags=(CARD_ATTACHMENT)
+
+# Warrior
+name="Warrior" card=HERO_01 tags={12:1,45:30,49:1,201:3,202:3,203:2} flags=(CARD_HERO)
+# Shamman
+name="Shamman" card=HERO_02 tags={12:1,45:30,49:1,201:3,202:3,203:2} flags=(CARD_HERO)
+# Rogue
+#name="Rogue" card=TB_SPT_Boss tags={12:1,45:30,49:1,201:3,202:3,203:2} flags=(CARD_HERO)
+# Paladin
+name="Paladin" card=HERO_04 tags={12:1,45:30,49:1,201:3,202:3,203:2} flags=(CARD_HERO)
+# Hunter
+name="Hunter" card=HERO_05 tags={12:1,45:30,49:1,201:3,202:3,203:2} flags=(CARD_HERO)
+# Druid
+name="Druid" card=HERO_06 tags={12:1,45:30,49:1,201:3,202:3,203:2} flags=(CARD_HERO)
+# Warlock
+name="Warlock" card=HERO_07 tags={12:1,45:30,49:1,201:3,202:3,203:2} flags=(CARD_HERO)
+# Mage
+name="Mage" card=HERO_08 tags={12:1,45:30,49:1,201:3,202:3,203:2} flags=(CARD_HERO)
+# Priest
+#name="Priest" card=LOEA04_01 tags={12:1,45:30,49:1,201:3,202:3,203:2} flags=(CARD_HERO)
+# King of Khaz Modan
+name="King of Khaz Modan" card=HERO_01a tags={12:1,45:30,49:1,201:3,202:3,203:2} flags=(CARD_HERO)
+# Blood Knight Matriarch
+name="Blood Knight Matriarch" card=HERO_04a tags={12:1,45:30,49:1,201:3,202:3,203:2} flags=(CARD_HERO)
+# Alleria Windranger
+name="Alleria Windranger" card=HERO_05a tags={12:1,45:30,49:1,201:3,202:3,203:2} flags=(CARD_HERO)
+# Guardian Medivh
+name="Guardian Medivh" card=HERO_08a tags={12:1,45:30,49:1,201:3,202:3,203:2} flags=(CARD_HERO)
+# Khadgar
+name="Khadgar" card=HERO_08b tags={12:1,45:30,49:1,201:3,202:3,203:2} flags=(CARD_HERO)
+
+# Ice lance
+#CS2_031 tags={12:1,47:0,48:1,49:3,201:3,202:5,203:2,264:1} flags=(CARD_SPELL|CARD_SPELL_DAMAGE|CARD_TARGETING|CARD_FREEZE|CARD_TARGET_FROZEN_4_DMG)
+
+# Holy Smite
+[CS1_130]
+
+# Fireball
+[CS2_029]
+
+# Swipe
+name="Swipes" card=CS2_012 tags={183:2,202:5,201:3,199:2,203:1,48:2,251:1,47:2,321:1,330:0,331:0,} custom=1 attachment=AT_039e
+
+# Hammer of Wrath
+[CS2_094]
+
+# Backstab
+name="Backstab" card=CS2_072 tags={183:2,202:5,201:3,199:7,203:2,251:6,48:0,47:2,268:2,321:1,330:0,331:0,} custom=1
+
+# Drain Life
+[CS2_061]
+
+# Sacrificial Pact
+[NEW1_003]
+
+# Arcane Shot
+name="Arcane Shot" card=DS1_185 tags={183:2,202:5,201:3,199:3,203:2,48:1,251:8,47:2,321:1,} custom=1
+
+# Soulfire
+[EX1_308]
+
+# Mortal Coil
+[EX1_302]
+
+# Shield Block
+[EX1_606]
+
+# Shiv
+[EX1_278]
+
+# Starfire
+[EX1_173]
+
+# Moonfire
+[CS2_008]
+
+# Kill Command
+[EX1_539]
+
+# Frostbolt
+name="Frostbolt" card=CS2_024 tags={183:2,202:5,201:3,199:4,203:1,48:2,251:1,47:3,268:2,321:1,208:1,} custom=1
+
+# Frost Shock
+[CS2_037]
+
+# Shadow Bolt
+[CS2_057]
+
+# Feral Rage - choose one
+#OG_047 tags={12:1,48:2,49:3,201:3,202:5,203:2,264:1} flags=(CARD_SPELL|CARD_SPELL_DAMAGE|CARD_NONTARGET)
+
+# Arcane intellect
+name="Arcane Intellect" card=CS2_023 tags={183:2,202:5,201:3,199:4,203:2,48:3,251:1,268:2,321:1,330:0,331:0,} custom=1
+
+# Sprint
+name="Sprint" card=CS2_077 tags={183:2,202:5,201:3,199:7,203:1,48:7,251:1,268:2,321:1,330:0,331:0,} custom=1
+
+# Arcane Explosion
+[CS2_025]
+
+# Arcane Missiles
+[EX1_277]
+
+# Tracking
+[DS1_184]
+
+# Sinister Strike
+[CS2_075]
+
+# Mind Blast
+[DS1_233]
+
+# Frost Nova
+name="Shiva's Guard" card=CS2_026 tags={183:2,202:5,201:3,199:4,203:1,48:3,251:1,47:1,268:2,321:1,330:0,331:0,208:1,} custom=1
+
+# Fan of Knives
+[EX1_129]
+
+# Cleave
+[CS2_114]
+
+# Multishot
+[DS1_183]
+
+# Mind Vision
+[CS2_003]
+
+# Flamestrike
+[CS2_032]
+
+# Whirlwind
+name="Counter Helix" card=EX1_400 tags={183:2,202:5,201:3,199:10,203:1,48:0,251:1,47:1,321:1,330:0,331:0,} custom=1
+
+# Consecration
+[CS2_093]
+
+# Holy Nova
+name="Mekansm" card=CS1_112 tags={183:2,202:5,201:3,199:6,203:1,48:4,251:5,321:1,330:0,331:0,} custom=1
+
+# Hellfire
+[CS2_062]
+
+# Water Elemental
+[CS2_033]
+
+################
+# Aura
+###############
+
+# Raid leader
+[CS2_122] attachment=CS2_122e
+# Enhanced
+name="Enhanced" card=CS2_122e tags={12:1,49:6,202:6} flags=(CARD_ATTACHMENT)
+
+# Stormwind champion
+name="Stormwind Champion" card=CS2_222 tags={183:2,202:4,201:2,203:1,48:7,47:6,45:6,251:1,321:1,330:0,331:0,362:1,} custom=1 attachment=CS2_222o
+# Might of Stormwind
+name="Might of Stormwind" card=CS2_222o tags={183:2,202:6,330:1,331:0,} custom=1 flags=(CARD_ATTACHMENT)
+
+# Warsong Commander
+[EX1_084] attachment=EX1_084e
+# Charge
+name="Charge" card=EX1_084e tags={12:1,49:6,202:6} flags=(CARD_ATTACHMENT)
+
+# Timber Wolf
+[DS1_175] attachment=DS1_175o
+# Furious Howl
+name="Furious Howl" card=DS1_175o tags={12:1,49:6,202:6} flags=(CARD_ATTACHMENT)
+
+# Gurubashi Berserker
+[EX1_399] attachment=EX1_399e
+# Berserking
+name="Berserking" card=EX1_399e tags={12:1,49:6,202:6} flags=(CARD_ATTACHMENT)
+
+
+################
+# Battlecry
+###############
+
+# Dread Infernal
+[CS2_064]
+
+# Novice engineer
+[EX1_015]
+
+# Gnomish Inventor
+[CS2_147]
+
+# Darkscale Healer
+[DS1_055]
+
+# Guardian of Kings
+name="Omniknight" card=CS2_088 tags={183:2,202:4,201:3,199:5,203:1,48:2,251:5,45:17,47:1,321:1,218:1,} custom=1
+
+# Nightblade
+name="Phantom Assassin" card=EX1_593 tags={183:2,203:2,202:4,48:4,45:2,47:4,201:3,321:1,218:1,} custom=1
+
+# Acidic Swamp Ooze
+[EX1_066]
+
+# Voodoo doctor
+name="Witch Doctor" card=EX1_011 tags={183:2,202:4,201:1,203:2,48:1,47:2,45:1,251:6,321:1,218:1,} custom=1
+
+# Elven Archer
+[CS2_189]
+
+# Fire Elemental
+name="Fire Elemental" card=CS2_042 tags={183:2,202:4,201:3,199:8,203:1,48:6,47:6,45:5,251:3,321:1,218:1,} custom=1
+ 
+# Ironforge Rifleman
+[CS2_141]
+
+# Stormpike Commando
+[CS2_150]
+
+# Frostwolf Warlord
+name="Legion Commander" card=CS2_226 tags={183:2,202:4,201:1,203:4,48:5,47:4,45:4,251:1,321:1,330:0,331:0,218:1,} custom=1 attachment=CS2_226e
+# Frostwolf Banner
+name="Frostwolf Banner" card=CS2_226e tags={183:2,202:6,330:1,331:1,} custom=1 flags=(CARD_ATTACHMENT)
+
+# Succubus
+name="Queen of Pain" card=EX1_306 tags={183:2,202:4,201:3,199:9,200:15,203:2,48:3,47:4,45:3,251:1,268:2,321:1,218:1,} custom=1
+
+# Sap
+name="Sap" card=EX1_581 tags={183:2,203:2,202:5,48:2,201:3,199:7,268:2,321:1,330:0,331:0,} custom=1
+
+# Mind Control
+[CS1_113] attachment=CS1_113e
+# Mind Control E
+name="Mind Control E" card=CS1_113e tags={12:1,49:6,202:6} flags=(CARD_ATTACHMENT)
+
+# Vanish
+[NEW1_004]
+
+################
+# Spell damage
+###############
+
+# Archmage
+[CS2_155]
+
+# Dalaran mage
+[EX1_582]
+
+# Kobold geomancer
+[CS2_142]
+
+# Ogre magi
+[CS2_197]
+
+################
+# Charge
+###############
+
+# Wolfirder
+[CS2_124]
+
+# Bluegill warrior
+[CS2_173]
+
+# Kor'kron elite
+name="Mogul Khan, Axe" card=NEW1_011 tags={183:2,203:5,202:4,321:1,330:0,331:0,48:3,47:2,45:20,199:10,197:0,} custom=1 level3=CS2_108
+
+# Stormwind knight
+[CS2_131]
+
+# Reckless rocketeer
+[CS2_213]
+
+# Stonetusk boar
+name="Stonetusk Boar" card=CS2_171 tags={183:2,202:4,201:3,200:20,203:2,48:1,47:1,45:1,251:6,268:2,321:1,197:0,} custom=1
+
+# Huffer
+[NEW1_034] flags=(CARD_UNCOLLECTIBLE)
+
+################
+# Divine shield
+###############
+
+# Scarlet Crusader
+[EX1_020]
+
+################
+# Taunt
+###############
+
+# Lord of the Arena
+[CS2_162]
+
+# Booty bay bodyguard
+[CS2_187]
+
+# Frostwolf Grunt
+[CS2_121]
+
+# Goldshire footman
+[CS1_042]
+
+# Ironbark protector
+[CS2_232]
+
+# Sen'jin Shieldmasta
+[CS2_179]
+
+# Voidwalker
+name="Enigma" card=CS2_065 tags={183:2,202:4,201:3,199:9,200:15,203:5,48:2,45:15,251:9,47:1,268:2,321:1,190:0,} custom=1 level2=OG_101 level3=EX1_312
+
+# Misha
+[NEW1_032] flags=(CARD_UNCOLLECTIBLE)
+
+# Frog
+[hexfrog] flags=(CARD_UNCOLLECTIBLE)
+
+################
+# Totem
+###############
+
+# Wrath of Air Totem
+[CS2_052] flags=(CARD_UNCOLLECTIBLE|CARD_TOTEMIC_CALL_CHILD)
+# Stoneclaw Totem
+[CS2_051] flags=(CARD_UNCOLLECTIBLE|CARD_TOTEMIC_CALL_CHILD)
+# Searing Totem
+[CS2_050] flags=(CARD_UNCOLLECTIBLE|CARD_TOTEMIC_CALL_CHILD)
+# Healing Totem
+[NEW1_009] flags=(CARD_UNCOLLECTIBLE|CARD_TOTEMIC_CALL_CHILD)
+# Flametongue Totem
+[EX1_565] attachment=EX1_565o
+# Flametongue
+name="Flametongue" card=EX1_565o tags={12:1,49:6,202:6} flags=(CARD_ATTACHMENT)
+
+################
+# Summon
+###############
+
+# Mirror Image
+[CS2_027]
+# Mirror Image
+[CS2_mirror]
+
+# Animal Companion
+[NEW1_031]
+
+# Dragonling Mechanic
+[EX1_025]
+# Mechanical Dragonling
+[EX1_025t] flags=(CARD_UNCOLLECTIBLE)
+
+# Murloc Tidehunter
+[EX1_506]
+# Murloc Scout
+name="Murloc Scout" card=EX1_506a tags={183:2,202:4,201:3,200:14,203:1,47:1,45:1,251:1,48:0,} custom=1 flags=(CARD_UNCOLLECTIBLE)
+
+# Razorfen Hunter
+[CS2_196]
+
+# Leokk
+[NEW1_033] flags=(CARD_UNCOLLECTIBLE)
+
+# Starving Buzzard
+name="Vulture" card=CS2_237 tags={321:1,183:2,203:1,202:4,48:1,47:1,45:1,199:3,200:20,330:0,331:0,32:1,} custom=1
+
+# Sheep
+[CS2_tk1] flags=(CARD_UNCOLLECTIBLE)
+
+# Avator of the Coin
+[GAME_002] flags=(CARD_UNCOLLECTIBLE)
+
+# Boar
+name="Boar" card=CS2_boar tags={183:2,202:4,201:3,203:1,47:1,45:1,251:1,48:1,200:20,330:0,331:0,} custom=1 flags=(CARD_UNCOLLECTIBLE)
+# Oasis Snapjaw
+name="Oasis Snapjaw" card=CS2_119 tags={321:1,183:2,203:2,202:4,48:4,47:2,45:7,200:20,} custom=1
+# Bloodfen Raptor
+name="Bloodfen Raptor" card=CS2_172 tags={183:2,203:2,202:4,48:2,45:2,47:3,201:1,251:1,268:2,321:1,200:20,} custom=1
+# Magma Rager
+name="Shadow Fiend" card=CS2_118 tags={321:1,183:2,203:5,202:4,48:2,47:1,45:14,330:0,331:0,} custom=1 level3=EX1_303
+
+# Puddlestomper 
+#GVG_064 tags={12:1,45:2,47:3,48:2,49:3,202:4,203:2} flags=(CARD_MINION)
+# Wisp
+name="Wisp" card=CS2_231 tags={183:3,203:1,202:4,48:2,45:2,47:0,201:3,251:7,} custom=1 attachment=NAX12_04e
+
+# Core Hound
+name="Core Hound" card=CS2_201 tags={321:1,183:2,203:1,202:4,48:7,47:9,45:5,200:20,} custom=1
+
+# Murloc Raider
+name="Murloc Raider" card=CS2_168 tags={183:2,202:4,201:2,203:2,48:1,47:2,45:1,251:1,321:1,200:14,} custom=1
+
+# River Crocolisk
+name="River Crocolisk" card=CS2_120 tags={321:1,183:2,203:2,202:4,48:2,47:2,45:3,200:20,} custom=1
+
+# Boulderfist Ogre
+name="Boulderfist Ogre" card=CS2_200 tags={321:1,183:2,203:2,202:4,48:6,47:6,45:7,} custom=1
+
+# Chillwind Yeti
+name="Chillwind Yeti" card=CS2_182 tags={183:2,202:4,201:3,203:1,48:4,47:4,45:5,251:6,268:2,321:1,330:0,331:0,} custom=1
+
+# Fireblast
+name="Fireblast" card=CS2_034 tags={12:1,47:1,48:2,49:1,201:3,202:10,203:2} flags=(CARD_HEROPOWER|CARD_TARGETING|CARD_SPELL|CARD_HP_SPELL_DAMAGE)
+
+# Lesser Heal
+# name="Lesser Heal" card=CS1h_001 tags={12:1,47:2,48:2,49:1,201:3,202:10,203:2} flags=(CARD_HEROPOWER|CARD_TARGETING|CARD_SPELL|CARD_SPELL_HEAL)
+
+# Lesser Heal
+name="Lesser Heal" card=CS1h_001 tags={183:2,202:10,201:3,199:6,203:2,48:2,251:1,} custom=1
+
+# Healing Touch
+[CS2_007]
+
+# Holy Light
+[CS2_089]
+
+# Reinforce
+name="Reinforce" card=CS2_101 tags={12:1,48:2,49:1,201:3,202:10,203:2} flags=(CARD_HEROPOWER|CARD_SPELL|CARD_NONTARGET|CARD_HP_REINFORCE|CARD_SUMMON)
+# Silverhand Recruit
+[CS2_101t] flags=(CARD_MINION|CARD_UNCOLLECTIBLE)
+
+# Dagger Mastery
+name="Dagger Mastery" card=CS2_083b tags={12:1,48:2,49:1,201:3,202:10,203:2} flags=(CARD_HEROPOWER|CARD_SPELL|CARD_NONTARGET|CARD_HP_DAGGERMASTERY|CARD_SUMMON)
+
+################
+# Weapon
+###############
+
+# Wicked Knife
+[CS2_082] flags=(CARD_UNCOLLECTIBLE)
+
+# Assassin's Blade
+[CS2_080]
+
+# Truesilver Champion
+name="Divine Rapier" card=CS2_097 tags={183:2,202:7,201:3,199:5,203:1,48:5,47:8,187:1,251:6,321:1,330:0,331:0,32:1,} custom=1
+
+# Fiery War Axe
+[CS2_106]
+
+# Light's Justice
+[CS2_091]
+
+# Arcanite reaper
+[CS2_112]
+
+##############
+
+# Totemic Call
+[CS2_049] tags={12:1,48:2,49:1,201:3,202:10,203:2} flags=(CARD_HEROPOWER|CARD_SPELL|CARD_NONTARGET|CARD_SUMMON|CARD_HP_TOTEMIC_CALL)
+
+# Shapeshift
+[CS2_017] tags={12:1,47:1,48:2,49:1,201:3,202:10,203:2} flags=(CARD_HEROPOWER|CARD_SPELL|CARD_NONTARGET|CARD_HP_SHAPESHIFT|CARD_SUMMON)
+
+# Armor Up
+[CS2_102] tags={12:1,47:2,48:2,49:1,201:3,202:10,203:2} flags=(CARD_HEROPOWER|CARD_SPELL|CARD_NONTARGET|CARD_HP_ARMORUP|CARD_SUMMON)
+
+# Life Tap
+[CS2_056] tags={12:1,47:2,48:2,49:1,201:3,202:10,203:2} flags=(CARD_HEROPOWER|CARD_SPELL|CARD_NONTARGET|CARD_HP_LIFETAP|CARD_SUMMON)
+
+# Steady Shot
+[DS1h_292] tags={12:1,47:2,48:2,49:1,201:3,202:10,203:2} flags=(CARD_HEROPOWER|CARD_TARGETING|CARD_SPELL|CARD_HP_SPELL_DAMAGE|CARD_TARGET_HERO)
+
+# Empty mana card
+name="Empty card" card=MANA_CARD tags={12:1,49:3,263:5} flags=(CARD_UNCOLLECTIBLE)
+
+# No card
+name="No Card" card=NO_CARD tags={49:2} flags=(CARD_UNCOLLECTIBLE)

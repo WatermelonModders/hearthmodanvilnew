@@ -1,0 +1,13 @@
+# Mind Vision
+{
+    ".section buff" : {
+        "code": "
+            def(card_s, card)
+            card = hsl_cards_get_hand_random($deck_opponent);
+            if(card) {
+                hsl_add_new_card_hand($deck_player, card->entity->name, holder)
+            }
+        ",
+        "target" : "$auto"
+    }
+}

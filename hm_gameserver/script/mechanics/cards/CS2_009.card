@@ -1,0 +1,12 @@
+# Mark of the Wild
+{
+    ".section buff" : {
+        "code": "
+            hsl_change_attack($defender, 2)
+            hsl_set_taunt($defender)
+            hsl_add_signle_attachment($player, $deck_player, $attacker, $defender);
+        ",
+
+        "target": "$minions"
+    }
+}

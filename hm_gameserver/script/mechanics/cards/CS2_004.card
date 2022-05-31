@@ -1,0 +1,15 @@
+# Power Word: Shield
+{
+    ".section buff" : {
+        "code": "
+            hsl_change_health($defender, 2)
+            hsl_add_signle_attachment($player, $deck_player, $attacker, $defender);
+
+            hsl_draw_cards($player, $deck_player, draw_card, 1)
+
+            /* hsl_link_target($attacker, $defenders) */
+        ",
+
+        "target": "$minions"
+    }
+}

@@ -1,0 +1,10 @@
+# Divine Spirit
+{
+    ".section buff" : {
+        "code": "
+            buff_health($defender, $defender->health * 2);
+        ",
+
+        "target": "$minions"
+    }
+}

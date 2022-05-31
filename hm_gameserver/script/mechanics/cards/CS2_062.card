@@ -1,0 +1,20 @@
+# Hellfire
+{
+    ".section spell_aoe" : {
+        "code" : "
+            def(card_list_s, allcards)
+            allcards = hsl_board_all_cards($attacker, $heroes_included);
+
+            def(card_list_s, cl)
+            foreach(cl, allcards) {
+                cl->card->receive.damage = 3;
+            }
+
+            hsl_attack_aoe($attacker, allcards)
+
+            hsl_link_target($attacker, allcards)
+        ",
+        "target": "$auto"
+    }
+}
+

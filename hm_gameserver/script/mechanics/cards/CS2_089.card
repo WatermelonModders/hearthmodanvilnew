@@ -1,0 +1,13 @@
+# Holy Light
+{
+    ".section buff" : {
+        "code" : "
+            $defender->receive.heal = 6;
+            hsl_attack($attacker, $defenders);
+            hsl_link_target($attacker, $defenders);
+        ",
+
+        "target": "$all"
+    }
+}
+

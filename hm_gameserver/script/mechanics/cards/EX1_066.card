@@ -1,0 +1,10 @@
+# Acidic Swamp Ooze
+{
+    ".section battlecry" : {
+        "code" : "
+            hsl_destroy_weapon($attacker, $player, holder)
+        ",
+
+        "target": "$auto"
+    }
+}

@@ -1,0 +1,11 @@
+# Holy Smite
+{
+    ".section spell" : {
+        "code" : "
+            $defender->receive.damage = 2;
+            hsl_attack($attacker, $defenders);
+        ",
+
+        "target": "$all"
+    }
+}

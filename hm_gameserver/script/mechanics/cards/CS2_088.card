@@ -1,0 +1,10 @@
+# Guardian of Kings
+{
+    ".section battlecry" : {
+        "code" : "
+            hsl_heal($attacker, $ally_hero, 6)
+        ",
+
+        "target": "$auto"
+    }
+}

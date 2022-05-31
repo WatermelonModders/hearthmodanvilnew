@@ -1,0 +1,10 @@
+# Dragonling Mechanic
+{
+    ".section battlecry" : {
+        "code" : "
+            hsl_summon_card($deck_player, \"EX1_025t\", cardholder)
+        ",
+
+        "target": "$auto"
+    }
+}

@@ -1,0 +1,11 @@
+# Hex
+{
+    ".section buff" : {
+        "code": "
+            hsl_transform($attacker, $defender, \"hexfrog\");
+        ",
+
+        "target": "$enemy_minions"
+    }
+}
+
