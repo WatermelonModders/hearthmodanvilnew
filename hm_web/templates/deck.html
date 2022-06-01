@@ -1,0 +1,58 @@
+$def with (cc, stored)
+
+        <div id ="deck" style="overflow:hidden;width:100%;background-color: rgba(0, 0, 0, 0.7);border-radius:25px; ">
+            <div id="panel">
+
+                <div style="overflow:hidden;">
+	    			<div style="overflow:hidden;">
+		    			<div style="float:left"> 
+			    			<div style="overflow:hidden;">
+				    			Choose Hero Power:
+					    		<form id="chp_form">
+						    	<div id="chp"></div>
+    							</form>
+	    					</div>
+                            <!--
+		    				<div style="overflow:hidden;">
+			    				Choose Hero:
+				    			<form id="ch_form">
+					    		<div id="ch"></div>
+						    	</form>
+    						</div>
+                            -->
+	    				</div>
+    				</div>
+                </div>
+
+            </div>
+
+            <div id="panel2">
+                <div style="overflow:hidden;width:100%">
+	    	        <div style="float:left;width:60%" id="chooseDeck"> 
+                    </div>
+	    	        <div style="float:left;" id="deckNo"> 
+                    </div>
+                </div>
+		        <div>
+	                Search: <input style="width:300px" type="text" onkeyup="displayCards(this.value)" />
+                </div>
+                <div id="chosenCards">
+                $for s in stored:
+                    $if(s == 'cards'):
+                        $for v in stored[s]:
+                            <div><div style='float:left;width:90%;cursor:pointer;' onClick="removeFromList('$v['name']', '$v['code']');" >$v['name']</div><div style='float:left;width:10%'>$v['count']</div></div>
+                </div>
+                <div style="margin-top:20px;">
+                    <div id="save_deck" style="float:left;width:45%;text-align:center;border:1px solid grey;cursor:pointer;" onClick="saveDeck()" >Save</div>
+                    <div style="float:left;width:45%;text-align:center;border:1px solid grey;cursor:pointer;" onClick="removeAllFromList()" >Clear</div>
+                </div>
+	        </div>
+
+            <div id="leftPanel" style="width:1050px;height:800px;;margin-top:50px;overflow-y:scroll;">
+$for c in cc:
+    <div id="card_$(c[0])" style='text-align:center;border:1px solid black;float:left;width:200px;height:300px;cursor:pointer;margin:2px;' onClick='addToList("$(c[1])","$(c[0])", $(c[2]),"$(c[3])")'><img style="margin:0px;padding:0px;width:200px;height:auto;" src='/static/custom/$(c[0]).jpg'  /></div>
+ 
+</div>
+
+
+        </div>

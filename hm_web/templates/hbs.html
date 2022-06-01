@@ -1,0 +1,328 @@
+$def with (signup, signin, cc)
+
+<!doctype html>
+
+1
+
+<html>
+
+    <head>
+        <title>HearthBleedStone</title>
+        <link rel="stylesheet" type="text/css" href="/static/hbs.css" />
+        
+        <script type="text/javascript" src="/static/jquery.js"></script>
+        
+        <script type="text/javascript" src="/static/cards.js"></script>
+        <script type="text/javascript" src="/static/cards_hp.js"></script>
+        <script type="text/javascript" src="/static/cards_hero.js"></script>
+        <script type="text/javascript" src="/static/changelog.js"></script>
+        <script type="text/javascript">
+
+    var selected = [];
+    var nselected = 0;
+
+
+jQuery(document).ready(function() {
+
+    genChangeLog();   
+
+    $$("#chooseDeck").html("Choose from " + cards.length + " cards");
+
+	$$("#save_deck").click(function() {
+		var content = $$("#chosenCards").val();
+		var hero =  $$('input[name=ch]:checked', '#ch_form').val();
+		var hp = $$('input[name=chp]:checked', '#chp_form').val();
+        var myObject = new Object();
+
+		if(!hero || !hp) {
+			return;
+		}
+
+        myObject.hero = hero;
+        myObject.hp = hp;
+        myObject.cards = selected;
+
+        console.log(JSON.stringify(myObject));
+
+		jQuery.ajax({
+			type: "POST",
+			data: {cards: JSON.stringify(myObject)},
+			success: function(data) {
+				console.log(data);
+			},
+		});
+		return false;
+	});
+
+	$$("#signin").click(function() {
+		var i_email = $$("#login_email").val();
+		var i_pass = $$("#login_pass").val();
+
+		console.log(i_email + i_pass);
+
+		jQuery.ajax({
+			type: "POST",
+			data: {login_email: i_email, login_password: i_pass},
+			success: function(data) {
+				console.log(data);
+			},
+		});
+		return false;
+	});
+
+	jQuery("#signup").click(function() {
+		var i_email = $$("input#reg_email").val();
+		var i_pass = $$("input#reg_pass").val();
+		var i_pass1 = $$("input#reg_pass1").val();
+
+		console.log(i_email + i_pass + i_pass1);
+
+		jQuery.ajax({
+			type: "POST",
+			data: {reg_email: i_email, reg_password: i_pass, req_password1: i_pass1},
+			success: function(data) {
+				console.log(data);
+			},
+		});
+		return false;
+	});
+
+	//----------------
+
+
+	});
+
+
+    function genChangeLog()
+    {
+        var obj = JSON.parse(changelog);
+        var h = "";
+        for(o in  obj.r) {
+            console.log(obj.r[o]);
+            console.log(obj.r[o][0]);
+            h += "<div style='overflow:hidden;font-weight:bold;'>" + obj.r[o][0] + "</div>";
+            for(r in obj.r[o][1]) {
+                console.log(obj.r[o][1][r]);
+                h += "<div style='overflow:hidden;margin-left:40px;'>" + obj.r[o][1][r] + "</div>";
+            }
+            /*
+            for(r in obj[o]) {
+                //console.log(obj[o][r]);
+                for(t in obj[o][r]) {
+                    console.log("name: " + obj[o][r][t]);
+                    for(q in obj[o][r][t]) {
+                        //console.log(obj[o][r][t][q]);
+                    }
+
+                }
+            }
+        */
+        }
+
+        
+        $$("#cl").html(h);
+    }
+
+    function genSelected()
+    {
+        var body = "";
+        for(i = 0; i < selected.length; i++) {
+            body += "<div><div style='float:left;width:90%;cursor:pointer;' onClick='removeFromList(\"" + selected[i]['name'] + "\")' > " + selected[i]['name'] + "</div><div style='float:left;width:10%'>" + selected[i]['count'] + "</div></div>";
+        }
+        $$("#chosenCards").html(body);
+
+        $$("#deckNo").html("Current: "+ nselected + "/30");
+
+        console.log("total: " + nselected);
+    }
+
+    function removeAllFromList() {
+        selected = [];
+		nselected = 0;
+        genSelected();
+    }
+
+    function removeFromList(name) {
+        for(i = 0; i < selected.length; i++) {
+            if(selected[i]['name'] == name) {
+                selected[i]['count']--;
+                nselected--;
+
+                if(selected[i]['count'] == 0) {
+                    selected.splice(i, 1);
+                }
+                break;
+            }
+        }
+
+        genSelected();
+    }
+
+    function addToList(name, code) {
+        var added = 0;
+
+        for(i = 0; i < selected.length; i++) {
+            if(selected[i]['name'] == name) {
+                selected[i]['count']++;
+                added = 1;
+                nselected++;
+                break;
+            }
+        }
+
+        if(added == 0) {
+            selected.push({'name': name, 'count': 1, 'code': code});
+            nselected++;
+        }
+
+        genSelected();
+    }
+
+function displayCards(filter)
+{
+  	var body = "";
+    console.log("cards len " + cards.length);
+  	for(i = 0; i < cards.length; i++) {
+		if(filter.length > 0) {
+            console.log(cards[i][1]);
+			if(cards[i][1].toLowerCase().indexOf(filter.toLowerCase()) >= 0) {
+	   			body += "<div style='border:1px solid black;float:left;width:200px;cursor:pointer;' onClick='addToList(\"" + cards[i][1] + "\", \"" + cards[i][0] +"\")'><img src='/static/images/"+cards[i][0]+".png' /></div>";
+			}
+		} else {
+	   		body += "<div style='border:1px solid black;float:left;width:200px;cursor:pointer;' onClick='addToList(\"" + cards[i][1].replace("'", "`") + "\", \"" + cards[i][0] +"\")'><img src='/static/images/"+cards[i][0]+".png' /></div>";
+		}
+  	}
+
+ 	$$("#leftPanel").html(body);
+}
+
+function displayHeroes(filter)
+{
+  	var body = "";
+  	for(i = 0; i < cards_hero.length; i++) {
+	   	body += "<div style='float:left'><input type='radio' name='ch' value='"+cards_hero[i][0]+"'>" + cards_hero[i][1]+"</div>";
+  	}
+
+ 	$$("#ch").html(body);
+}
+
+function displayHP(filter)
+{
+  	var body = "";
+  	for(i = 0; i < cards_hp.length; i++) {
+	   	body += "<div style='float:left'><input type='radio' name='chp' value='"+cards_hp[i][0]+"'>" + cards_hp[i][1]+"</div>";
+  	}
+
+ 	$$("#chp").html(body);
+}
+
+
+		</script>
+
+<style>
+#panel {
+	position:fixed; 
+	z-index:1;
+	margin-top:20px;
+    width:1460px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color:white;
+}
+
+#panel2 {
+	position:fixed; 
+	z-index:1;
+	margin-top:120px;
+    margin-left:1060px;
+    width:400px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color:white;
+    padding:10px;
+}
+
+</style>
+    </head>
+    
+   	<body style='background-color:black;margin:0px;,padding:0px;font-size:10pt;' onLoad="displayHP();displayHeroes()">
+    <div style="overflow:hidden;width:1460px;margin:auto;border:1px solid black;">
+<!--
+        <div id ="cl" style="display:none;overflow:hidden;">
+            <div>changelog</div>
+
+            <div id="cl_logs"></div>
+        </div>
+
+        <div id ="createaccount" style="display:none;overflow:hidden;">
+			create account
+
+        	<form class="form" method="post"> 
+        		$:signup.render()
+	        <input id='signup' class="button" type="submit" value="send" />
+    	    </form>
+
+
+        </div>
+
+        <div id ="login" style="display:none;overflow:hidden;">
+			login
+
+        		$:signin.render()
+	        <input id='signin' class="button" type="submit" value="send" />
+
+
+		</div>
+-->
+        <div id ="deck" style="overflow:hidden;width:100%;">
+            <div id="panel">
+
+                <div style="overflow:hidden;">
+	    			<div style="overflow:hidden;">
+		    			<div style="float:left"> 
+			    			<div style="overflow:hidden;">
+				    			Choose Hero Power:
+					    		<form id="chp_form">
+						    	<div id="chp"></div>
+    							</form>
+	    					</div>
+		    				<div style="overflow:hidden;">
+			    				Choose Hero:
+				    			<form id="ch_form">
+					    		<div id="ch"></div>
+						    	</form>
+    						</div>
+	    				</div>
+    				</div>
+                </div>
+
+            </div>
+
+            <div id="panel2">
+                <div style="overflow:hidden;width:100%">
+	    	        <div style="float:left;width:60%" id="chooseDeck"> 
+                    </div>
+	    	        <div style="float:left;" id="deckNo"> 
+                    </div>
+                </div>
+		        <div>
+	                Search: <input style="width:300px" type="text" onkeyup="displayCards(this.value)" />
+                </div>
+                <div id="chosenCards"></div>
+                <div style="margin-top:20px;">
+                    <div id="save_deck" style="float:left;width:45%;text-align:center;border:1px solid grey;cursor:pointer;">Save</div>
+                    <div style="float:left;width:45%;text-align:center;border:1px solid grey;cursor:pointer;" onClick="removeAllFromList()" >Clear</div>
+                </div>
+	        </div>
+
+            <div id="leftPanel" style="width:100%;overflow:hidden;margin-top:140px;">
+$for c in cc:
+    <div style='border:1px solid black;float:left;width:200px;cursor:pointer;' onClick='addToList("$(c[1])","$(c[0])")'><img src='/static/images/$(c[0]).png' /></div>";
+ 
+</div>
+
+
+        </div>
+
+    </div>
+
+</body>
+</html>

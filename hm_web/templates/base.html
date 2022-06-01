@@ -1,0 +1,570 @@
+$def with (session, page, loaded, allcards)
+
+<!doctype html>
+<html>
+
+    <head>
+        <title>hearthmod.com</title>
+        <link rel="stylesheet" type="text/css" href="/static/hbs.css" />
+        
+        <script type="text/javascript" src="/static/jquery.js"></script>
+        <script type="text/javascript" src="/static/cards_hp.js"></script>
+        <script type="text/javascript" src="/static/cards_hero.js"></script>
+        <script type="text/javascript" src="/static/changelog.js"></script>
+
+<!--       
+<link rel="stylesheet" href="/static/hsf/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="/static/hsf/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link rel="stylesheet" href="/static/hsf/cayman.css">
+<link rel="stylesheet" href="/static/hsf/normalize.css">
+-->
+
+<link rel="stylesheet" href="/static/hsf/cayman.css">
+
+<script type="text/javascript">
+// modcreate
+
+var loadedTags = 0;
+var selected = [];
+var nselected = 0;
+var ncards = $(len(allcards));
+var cards = []
+
+$for s in loaded:
+    $if(s == 'cards'):
+        $for v in loaded[s]:
+            selected.push({name: "$v['name']", code: "$v['code']", count: $v['count'], limit: $v['limit'], hero: "$v['hero']"});
+            nselected += $v['count'];
+
+$for c in allcards:
+    cards.push(["$(c[0])", "$(c[1])", $(c[2]), "$(c[3])"]);
+
+function countSelected()
+{
+    var cnt = 0;
+
+    for(i = 0; i < selected.length; i++) {
+        if(selected[i]['count'] != 0) {
+            cnt += selected[i]['count'];
+        }
+    }
+
+    return cnt;
+}
+
+function saveDeck() {
+        var cnt = countSelected();
+
+        if(cnt != 30) {
+            alert("Exactly 30 cards allowed. You selected " + cnt);
+            return;
+        }
+
+		var content = $$("#chosenCards").val();
+		//var hero =  $$('input[name=ch]:checked', '#ch_form').val();
+		var hp = $$('input[name=chp]:checked', '#chp_form').val();
+        var myObject = new Object();
+
+		if(!hp) {
+            alert("Hero power not chosen.")
+			return;
+		}
+
+        myObject.hp = hp;
+        myObject.cards = selected;
+
+		jQuery.ajax({
+			type: "POST",
+            contentType: "application/json",
+			data: JSON.stringify(myObject),
+			success: function(data) {
+                alert("Deck saved.");
+			},
+		});
+		return false;
+};
+
+function removeAllFromList() {
+        /*
+        for(i = 0; i < cards.length; i++) {
+            $$('#card_'+cards[i][0]).fadeTo("slow", 1);
+        }
+        */
+
+        selected = [];
+		nselected = 0;
+        genSelected();
+    }
+
+function removeFromList(name, code) {
+        for(i = 0; i < selected.length; i++) {
+            if(selected[i]['name'] == name) {
+                selected[i]['count']--;
+                nselected--;
+
+                if(selected[i]['count'] == 0) {
+                    selected.splice(i, 1);
+                }
+                break;
+            }
+        }
+
+        genSelected();
+    }
+
+function heroesSelected()
+{
+    var ns = 0;
+
+    for(i = 0; i < selected.length; i++) {
+        if(selected[i]['hero'] == 'boss') {
+            ns++;
+        }
+    }
+
+    return ns;
+    /*
+    if(ns >= 3) {
+        for(i = 0; i < cards.length; i++) {
+            if(cards[i][2] == 1) {
+                $$('#card_'+cards[i][0]).fadeTo("slow", 0.33);
+            }        
+        }
+    }
+    */
+}
+
+function addToList(name, code, limit, hero) {
+        var added = 0;
+       
+        var hs = heroesSelected();
+
+        if(hs >= 2 && hero == 'boss') {
+            alert("Max 2 heroes allowed");
+            return;
+        }
+
+        for(i = 0; i < selected.length; i++) {
+            if(selected[i]['name'] == name && selected[i]['count'] >= limit) {
+                alert("Limit " + limit + " reached for card " + name);
+                return;
+            }
+        }
+
+        for(i = 0; i < selected.length; i++) {
+            if(selected[i]['name'] == name && selected[i]['count'] < limit) {
+                selected[i]['count']++;
+                added = 1;
+                nselected++;
+                break;
+            }
+        }
+
+        if(added == 0) {
+            selected.push({'name': name, 'count': 1, 'code': code, 'limit': limit, 'hero': hero});
+            nselected++;
+        }
+
+        /*
+        if(sel >= limit) {
+            $$('#card_'+selected[i]['code']).fadeTo("slow", 0.33);
+        }
+        */
+
+        genSelected();
+    }
+
+
+function modCardLoad(c)
+{
+    var myObject = new Object();
+    myObject.card = c;
+
+    jQuery.ajax({
+	    type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(myObject),
+	    success: function(data) {
+            cardLoaded(data);
+	    },
+    });
+}
+
+function modPublish()
+{
+    var myObject = new Object();
+    myObject.publish = "qqMode";
+
+    jQuery.ajax({
+	    type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(myObject),
+	    success: function(data) {
+            if(data != "success") {
+                alert("Not authorized");
+            } else {
+                alert("Mod saved");
+            }
+	    },
+    });
+}
+
+function modCardLoadModified(c)
+{
+    var myObject = new Object();
+    myObject.modified = c;
+
+    jQuery.ajax({
+	    type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(myObject),
+	    success: function(data) {
+            cardLoaded(data);
+	    },
+    });
+}
+
+function modRemoveEnabledCard(c)
+{
+    var myObject = new Object();
+    myObject.remove = c;
+
+    jQuery.ajax({
+	    type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(myObject),
+	    success: function(data) {
+            d = JSON.parse(data);
+            if(d.length > 0) {
+                modCards(data);
+            } else {
+                alert("Not authorized");
+            }
+	    },
+    });
+}
+
+function modCards(d)
+{
+    c = JSON.parse(d);
+    body = "";
+
+
+  	for(i = 0; i < c.length; i++) {
+
+
+        body += "<div style=\"overflow:hidden;\">";
+        body += "<div style=\"float:left;cursor:pointer;width:200px;\" onClick=\"modCardLoadModified('"+ c[i][0] + "')\">" + c[i][1] + "</div>";
+        body += "<div style='float:left;width:10px;cursor:pointer;' onclick=\"modRemoveEnabledCard('"+c[i][0]+"')\">R</div>";
+        body += "</div>";
+  	}
+
+ 	$$("#enabledCard").html(body);
+}
+
+function saveLoadedCard()
+{
+    var item = []; 
+
+    for(i = 0; i < loadedTags; i++) {
+ 	    key = $$("#cardLoadedTagKey" + i).val();
+ 	    value = $$("#cardLoadedTagValue" + i).val();
+        if(key && value) {
+            item.push([key, value]);
+        }
+    }
+       
+    key = "__code";
+    value = $$("#__code").val();
+    item.push([key, value]);
+
+    jQuery.ajax({
+	    type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(item),
+	    success: function(data) {
+            d = JSON.parse(data);
+            if(d.length > 0) {
+                $$('#gen_card').html("");
+                d = new Date();
+                $$('#gen_card').prepend('<img style="width:250px;height:auto;" src="/static/custom/' + $$("#cardLoadedTagValue0").val() + '.jpg?' + d.getTime() + '" />');
+                modCards(data);
+            } else {
+                alert("Not authorized");
+            }
+	    },
+    });
+}
+
+function cardLoaded(c)
+{
+    cards = JSON.parse(c);
+
+    var body = "";
+    var code = "";
+
+    loadedTags = cards.length;
+    $$("#__code").val("");
+
+    body += "<div style=\"width:500px;float:left;\">";
+
+  	for(i = 0; i < cards.length; i++) {
+        if(cards[i][0] == "__code") {
+ 	        $$("#__code").val(cards[i][1]);
+            continue;
+        }
+
+        if(cards[i][0] == "__name") {
+            code = cards[i][1];
+        }
+
+        body += "<div style=\"overflow:hidden;\">";
+        body += "<div style='float:left;width:150px;'>" + cards[i][2] + "</div>";
+        if(cards[i][0] == 184) {
+            body += "<div style='float:left;width:300px;'><input type=\"hidden\" id=\"cardLoadedTagKey"+ i +"\" value=\""+ cards[i][0]+"\"\"/><textarea style=\"height:50px;background-color:rgba(0, 0, 0, 0.7);border:0px;margin:1px;padding:2px;color:white;width:300px;\" type=\"text\" id=\"cardLoadedTagValue"+ i +"\" /></textarea></div>";
+        } else {
+            body += "<div style='float:left;width:300px;'><input type=\"hidden\" id=\"cardLoadedTagKey"+ i +"\" value=\""+ cards[i][0]+"\"\"/><input style=\"background-color:rgba(0, 0, 0, 0.7);border:0px;margin:1px;padding:2px;color:white;width:300px;\" type=\"text\" id=\"cardLoadedTagValue"+ i +"\" /></div>";
+        }
+        body += "</div>";
+  	}
+
+    body += "</div>";
+
+    body += "<div id=\"gen_card\" style=\"width:300px;float:left;\">";
+    d = new Date();
+    body += "<img src=\"/static/custom/" + code + ".jpg?" + d.getTime() + "\" style=\"width:250px;height:auto;\"/>";
+    body += "</div>";
+
+ 	$$("#loadedCard").html(body);
+
+    for(i = 0; i < cards.length; i++) {
+        $$("#cardLoadedTagValue" + i).val(cards[i][1]);
+    }
+}
+
+
+jQuery(document).ready(function() {
+
+    displayHP();
+    displayHeroes();
+
+$for s in loaded:
+    $if(s == 'hp'):
+        $$('#radio_$(loaded[s])').attr("checked", true);
+
+$for s in loaded:
+    $if(s == 'hero'):
+        $$('#radio_$(loaded[s])').attr("checked", true);
+
+$$("#chooseDeck").html("Choose from " + ncards + " cards");
+
+	$$("#mod_create").click(function() {
+        var myObject = new Object();
+		myObject.name = $$("#mod_name").val();
+		myObject.url = $$("#mod_url").val();
+
+		jQuery.ajax({
+			type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(myObject),
+			success: function(data) {
+                if(data == 'fail') {
+                    alert("Failed to created mod");
+                } else {
+                    window.location.href = "/mod";
+                }
+			},
+		});
+		return false;
+	});
+
+	$$("#signin").click(function() {
+
+        var myObject = new Object();
+		myObject.user = $$("#login_email").val();
+		myObject.pass = $$("#login_pass").val();
+
+		jQuery.ajax({
+			type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(myObject),
+			success: function(data) {
+                if(data != 0) {
+                    alert("login failed");
+                } else {
+                    window.location.href = "/deck";
+                }
+			},
+		});
+		return false;
+	});
+
+	jQuery("#signup").click(function() {
+        var myObject = new Object();
+		myObject.email = $$("input#reg_email").val();
+		myObject.pass = $$("input#reg_pass").val();
+		myObject.pass1 = $$("input#reg_pass1").val();
+
+		jQuery.ajax({
+			type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(myObject),
+			success: function(data) {
+                if(data != 0) {
+                    alert("Account creation failed");
+                } else {
+                    window.location.href = "/signin";
+                }
+			},
+		});
+		return false;
+	});
+
+	//----------------
+
+
+	});
+
+
+    function genChangeLog()
+    {
+        var obj = JSON.parse(changelog);
+        var h = "";
+        for(o in  obj.r) {
+            h += "<div style='overflow:hidden;font-weight:bold;'>" + obj.r[o][0] + "</div>";
+            for(r in obj.r[o][1]) {
+                h += "<div style='overflow:hidden;margin-left:40px;'>" + obj.r[o][1][r] + "</div>";
+            }
+            /*
+            for(r in obj[o]) {
+                for(t in obj[o][r]) {
+                    for(q in obj[o][r][t]) {
+                    }
+
+                }
+            }
+        */
+        }
+
+        
+        $$("#cl").html(h);
+    }
+
+    function genSelected()
+    {
+        var body = "";
+        for(i = 0; i < selected.length; i++) {
+            body += "<div><div style='float:left;width:90%;cursor:pointer;' onClick='removeFromList(\"" + selected[i]['name'] + "\")' > " + selected[i]['name'] + "</div><div style='float:left;width:10%'>" + selected[i]['count'] + "</div></div>";
+        }
+        $$("#chosenCards").html(body);
+
+        $$("#deckNo").html("Current: "+ nselected + "/30");
+    }
+
+
+
+function displayCards(filter)
+{
+  	var body = "";
+  	for(i = 0; i < cards.length; i++) {
+		if(filter.length > 0) {
+			if(cards[i][1].toLowerCase().indexOf(filter.toLowerCase()) >= 0) {
+
+                body += "<div id=\"card_"+cards[i][0]+"\" style='border:1px solid black;float:left;width:200px;cursor:pointer;' onClick='addToList(\"" + cards[i][1] + "\", \"" + cards[i][0] +"\", " + cards[i][2] +", \"" + cards[i][3] +"\")'><img style=\"margin:0px;padding:0px;width:200px;height:auto;\" src='/static/custom/"+cards[i][0]+".jpg'  /></div>";
+			}
+		} else {
+	   		//body += "<div style='border:1px solid black;float:left;width:200px;cursor:pointer;' onClick='addToList(\"" + cards[i][1].replace("'", "`") + "\", \"" + cards[i][0] +"\", " + cards[i][2] +", \"" + cards[i][3] +"\")'><img src='/static/custom/"+cards[i][0]+".jpg' /></div>";
+            body += "<div id=\"card_"+cards[i][0]+"\" style='border:1px solid black;float:left;width:200px;cursor:pointer;' onClick='addToList(\"" + cards[i][1] + "\", \"" + cards[i][0] +"\", " + cards[i][2] +", \"" + cards[i][3] +"\")'><img style=\"margin:0px;padding:0px;width:200px;height:auto;\" src='/static/custom/"+cards[i][0]+".jpg'  /></div>";
+		}
+  	}
+
+ 	$$("#leftPanel").html(body);
+}
+
+function displayHeroes(filter)
+{
+  	var body = "";
+  	for(i = 0; i < cards_hero.length; i++) {
+	   	body += "<div style='float:left'><input id='radio_"+cards_hero[i][0]+"' type='radio' name='ch' value='"+cards_hero[i][0]+"'>" + cards_hero[i][1]+"</div>";
+  	}
+
+ 	$$("#ch").html(body);
+}
+
+function displayHP(filter)
+{
+  	var body = "";
+  	for(i = 0; i < cards_hp.length; i++) {
+	   	body += "<div style='float:left'><input id='radio_"+cards_hp[i][0]+"' type='radio' name='chp' value='"+cards_hp[i][0]+"'>" + cards_hp[i][1]+"</div>";
+  	}
+
+ 	$$("#chp").html(body);
+}
+
+
+</script>
+
+<style>
+#panel {
+	position:fixed; 
+	z-index:1;
+	margin-top:20px;
+    width:1460px;
+    color:white;
+}
+
+#panel2 {
+	position:fixed; 
+	z-index:1;
+	margin-top:20px;
+    margin-left:1060px;
+    width:400px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color:white;
+    padding:10px;
+}
+
+#avCard:hover {
+    background-color: grey;
+}
+
+</style>
+    </head>
+
+<!--    
+<div id="main" class="container">
+<div id="video-container"><video autoplay="" loop=""><source src="http://media.blizzard.com/wow/legion-6a153ad2/videos/header-illidan.webm" type="video/webm"></video></div>
+
+<section class="page-header">
+<h1 class="project-name">HSVortex</h1>
+<br>
+<h2 class="project-tagline"></h2>
+Hearthstone modding site<br><br>
+<a href="signup" target="_blank" class="btn">Deck</a><a href="https://mega.nz/#!IZlTERwL!vhkywulozZHL4WwrVoa7zuSXBo1hjZ9KuC-_cI2XhKU" target="_blank" class="btn">Mod</a><a href="https://mega.nz/#!VZU12ABK!XtmOkJhSS_H1TlgW3oD2TioGGQSOgYwGAFYA4p55o6c" target="_blank" class="btn">Mac OS</a><a href="https://mega.nz/#!1FUUhQZC!h8D30xN-RsHZQABVgDG4X1PJIkLEWvqylhIWf8GlpeI" target="_blank" class="btn">Linux</a><br><br><br><a href="http://forum.hsmod.com/" target="_blank"><img src="/static/hsf/ic_chat_black_48px.svg" width="128"></a><a href="https://discordapp.com/invite/015DeTvsu3uBsDjzv" target="_blank"><img src="/static/hsf/687474703a2f2f692e696d6775722e636f6d2f74796f764963652e706e67" width="128"></a></section></div>
+-->
+   	<body style='margin:0px;,padding:0px;font-size:10pt;color:white;'>
+
+    <div id="video-container"><video autoplay=""><source src="http://media.blizzard.com/wow/legion-6a153ad2/videos/header-illidan.webm" type="video/webm"></video></div>
+    
+    <div style="overflow:hidden;width:1460px;margin:auto;border:0px solid black;margin-bottom:20px;">
+		<div id="menu" style='width:100%;overflow:hidden;background-color: rgba(0, 0, 0, 0.7);margin-bottom:15px;'>
+            <div style="float:left;width:50%;padding:10px;">
+                <a href="/">Home</a> | <a href="/signup">Sign up</a> | <a href="/signin">Sign in</a> | <a href="/deck">Deck</a> | <a href="/mod">Mod</a> | <a href="/faq">FAQ</a> | <a href="/ladder">Ladder</a> | <a href="http://hearthmod.prophpbb.com/" target="_new">Forum</a>
+            </div>
+
+            <div style="float:left;width:50%;text-align:right;padding:10px;">
+            $if session.login != 0:
+    			<div>Logged $session.user</div>
+
+            </div>
+		</div>
+        
+        $:page
+
+    </div>
+
+    <div style="overflow:hidden;width:1460px;margin:auto;border:0px solid black;text-align:center;background-color: rgba(0, 0, 0, 0.7);border-radius:5px;padding:15px;color:grey;margin-top:10px;">
+        DISCLAIMER: This service is free of charge. We do not store personal data of any sort. Not affiliated with Blizzard Entertainment. IRC: #hearthmod @ freenode.org | hearthmod.com &copy; 2016
+    </div>
+</body>
+</html>

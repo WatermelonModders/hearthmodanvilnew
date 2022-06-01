@@ -1,0 +1,18 @@
+$def with (players)
+
+<div style="margin-top:10px;float:left;background-color: rgba(0, 0, 0, 0.7);border-radius:25px;padding:15px;font-size:12pt;width:100%;height:450px;overflow-y:scroll;">
+    <div style="overflow:hidden;">
+    <div style="float:left;width:100px;">Player</div>
+    <div style="float:left;width:100px;">Wins</div>
+    <div style="float:left;width:100px;">Loses</div>
+    <div style="float:left;width:100px;">Win Rate</div>
+    </div>
+
+$for p in players:
+    <div style="overflow:hidden;">
+    <div style="float:left;width:100px;">$p[0]</div>
+    <div style="float:left;width:100px;">$p[1]</div>
+    <div style="float:left;width:100px;">$p[2]</div>
+    <div style="float:left;width:100px;">$(p[3])%</div>
+    </div>
+</div>

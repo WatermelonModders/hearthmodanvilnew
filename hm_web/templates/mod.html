@@ -1,0 +1,30 @@
+$def with (modes)
+
+<div style="overflow:hidden;width:100%;background-color: rgba(0, 0, 0, 0.7);border-radius:25px;padding:10px;">
+    <div style="overflow:hidden;width:100%">
+        <form class="form" method="post" style="float:left;">
+        <div style="overflow:hidden;">
+            <div style="float:left;width:200px;">Mod Name:</div>
+            <div style="float:left;width:200px;"><input id='mod_name' type="text" style="background-color: rgba(0, 128, 0, 0.7);border:0px;color:white;width:200px;"/></div>
+        </div>
+
+        <div style="overflow:hidden;">
+            <div style="float:left;width:200px;">Mod URL:</div>
+            <div style="float:left;width:200px;"><input id='mod_url' type="text" style="background-color: rgba(0, 128, 0, 0.7);border:0px;color:white;width:200px;"/></div>
+        </div>
+
+        <div style="overflow:hidden;">
+
+            <div style="float:left;width:200px;height:10px;"></div>
+            <div style="float:left;width:200px;"><input id='mod_create' type="submit" value="Mod Create" style="background-color: rgba(0, 128, 0, 0.7);border:0px;color:white;width:200px;cursor:pointer;"/>
+        </div>
+        </form>
+    </div>
+</div>
+
+<div style="overflow:hidden;width:100%;background-color: rgba(0, 0, 0, 0.7);border-radius:25px;padding:10px;">
+    $for m in modes:
+        <div style="overflow:hidden;width:100%;text-align:center;">
+        <a href="/mod/edit/$(m['url'])">$(m['name'])</a>
+        </div>
+</div>

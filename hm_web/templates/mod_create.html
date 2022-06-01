@@ -1,0 +1,74 @@
+$def with (cards, ncards, stored)
+
+<div style="width:100%;overflow:hidden;">
+
+
+<div style="float:left;width:20%;background-color: rgba(0, 0, 0, 0.7);border-radius:25px;padding:10px;">
+    <div style="">1. Select Card</div>
+
+
+<div id="containerNONE" style="overflow:hidden;">
+
+$for c in range(0, ncards):
+    $if(c % 30 == 0):
+        </div>
+        $if(c == 0):
+            <div id="container$(c/30)" style="overflow:hidden;">
+        $else:
+            <div id="container$(c/30)" style="display:none;overflow:hidden;">
+
+    <div id="avCard" style="cursor:pointer;hover:background-color:white;" onClick="modCardLoad('$cards[c][0]')"i onmouseover="$$('#hidden$cards[c][0]').show()" onmouseout="$$('#hidden$cards[c][0]').hide()">$(c+1). $cards[c][1]</div>
+
+    <div id="hidden$cards[c][0]" style="cursor:pointer;display:none;position:absolute;z-index:100;"><img src="/static/images/$(cards[c][0]).png"/></div>
+        
+     
+</div>
+
+
+<div style="overflow:hidden;"> 
+
+    <div style="float:left;">Page:</div>
+
+    <div style="float:left;">
+$for c in range(0, ncards):
+    $if(c % 30 == 0):
+        <div id="avCard" style="float:left;margin:2px;cursor:pointer;" onclick="
+        $for q in range(0, ncards):
+            $if(q % 30 == 0):
+                $$('#container$(q/30)').hide();
+        $$('#container$(c/30)').show();">$((c / 30) + 1)</div>
+</div>
+
+    </div>
+
+</div>
+
+    <div style="margin-left:10px;float:left;width:60%;background-color: rgba(0, 0, 0, 0.7);border-radius:25px;padding:15px;">
+        <div>2. Edit Card</div>
+        <div id="loadedCard" style="padding:10px;"></div>
+
+
+        <div><textarea style="background-color:rgba(0, 0, 0, 0.7);color:#efefef;border:0px;" id="__code" rows="25" cols="103"></textarea></div>
+<!--onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}" 
+-->
+        <div><input style="width:100%;background-color: rgba(0, 128, 0, 0.6);color:white;border:0px;cursor:pointer;" type="submit" value="Save Card" onClick="saveLoadedCard()" /></div>
+    </div>
+
+    <div style="margin-left:10px;float:left;width:18%;background-color: rgba(0, 0, 0, 0.7);border-radius:25px;padding:15px;">
+        <div>3. Enabled Cards</div>
+        <div id="enabledCard" style="height:600px;overflow-y:scroll;">
+$for s in stored:
+        <div style="overflow:hidden;">
+        $if len(s) == 2: 
+            <div style="float:left;cursor:pointer;width:200px;" onClick="modCardLoadModified('$(s[0])')">$(s[1])</div>
+            <div style='float:left;width:10px;cursor:pointer;' onclick="modRemoveEnabledCard('$(s[0])')">R</div>
+        </div>
+</div>
+
+    </div>
+
+    <div style="margin-left:10px;margin-top:10px;float:left;width:18%;background-color: rgba(0, 0, 0, 0.7);border-radius:25px;padding:15px;font-size:14pt;text-align:center;cursor:pointer;" onclick="modPublish()">
+        <div>Save Mod</div>
+    </div>
+
+</div>

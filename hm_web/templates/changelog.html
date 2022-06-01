@@ -1,0 +1,12 @@
+$def with (sections)
+
+$for s in sections:
+    <div style="margin-top:10px;float:left;background-color: rgba(0, 0, 0, 0.7);border-radius:25px;padding:15px;font-size:12pt;width:100%;height:150px;overflow-y:scroll;">
+        <div style="overflow:hidden;color:green;">$s[1] ( build: $s[3])</div>
+        $for t in s[2]:
+            <div style="overflow:hidden">
+                $t.replace("\"", "")
+            </div>
+
+    </div>
+
