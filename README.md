@@ -90,6 +90,3 @@ gameserver and lobbyserver log files:
 
 Pull requests are more than welcome.
 
-## Contact:
-
-join IRC channel #hearthmod @ irc.freenode.org
