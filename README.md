@@ -31,7 +31,7 @@ git clone https://github.com/WatermelonModders/hearthmodanvilnew
 Run 
 
 ```sh
-cd hearthmod/
+cd hearthmodanvilnew/
 bash host_ctl_ubuntu.sh uninstalled
 ```
 
