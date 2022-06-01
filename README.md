@@ -25,13 +25,13 @@ Hearthmod anvil is a software stack that allows you to Mod Hearthstone. If you i
 Clone hearthmod software stack
 
 ```sh
-git clone https://github.com/WatermelonModders/hearthmodanvil.git
+git clone https://github.com/WatermelonModders/hearthmodanvilnew
 ```
 
 Run 
 
 ```sh
-cd hearthmod/
+cd hearthmodanvilnew/
 bash host_ctl_ubuntu.sh uninstalled
 ```
 
