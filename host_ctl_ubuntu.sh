@@ -22,8 +22,8 @@ start() {
     fi
     echo 'Starting hearthmod'
     mkdir -p ./hm_log
-    valgrind --log-file=./hm_log/hm_gameserver_valgrind_$(date +%s) --trace-children=yes ./hm_gameserver/hm_gameserver --log=./hm_log/hm_gameserver_$(date +%s)
-    valgrind --log-file=./hm_log/hm_lobbyserver_valgrind_$(date +%s) --trace-children=yes ./hm_lobbyserver/hm_lobbyserver --gameserver=$1 --log=./hm_log/hm_lobbyserver_$(date +%s)
+    ./hm_gameserver/hm_gameserver --log=./hm_log/hm_gameserver_$(date +%s)
+    ./hm_lobbyserver/hm_lobbyserver --gameserver=$1 --log=./hm_log/hm_lobbyserver_$(date +%s)
     # stud
     ./hm_stud/stud ./hm_stud/cert/test.com.pem
     start_web
@@ -38,6 +38,21 @@ stop() {
     ps -ef | grep nginx | grep -v grep | awk '{print $2}' | xargs sudo kill -9
 }
 
+st_clone() {
+    git clone https://github.com/farb3yonddriv3n/hm_$1.git && cd hm_$1/ && git checkout $2 && cd ..
+}
+
+clone() {
+    st_clone "base" "v0.1"
+    st_clone "database" "v0.1"
+    st_clone "gameserver" "v0.2"
+    st_clone "lobbyserver" "v0.1"
+    st_clone "stud" "master"
+    st_clone "nginx" "master"
+    st_clone "web" "v0.1"
+    st_clone "sunwell" "v0.1"
+    st_clone "client" "v0.1"
+}
 
 pull() {
     for i in ${repos[@]}; do
@@ -60,7 +75,7 @@ hearthstone_download() {
 
 hearthstone_install() {
     if [ ! -d "hs_client1" ] || [ ! -d "hs_client2" ]; then
-        echo "Run 'hearthstone_download first so both directories hs_client1 and hs_client2 are created"
+        echo "Run 'heaarthstone_download first so both directories hs_client1 and hs_client2 are created"
         exit 1
     fi
 
@@ -138,15 +153,17 @@ case $1 in
         # remove left overs
         rm -rf libcouchbase/
         # dependencies and couchbase
-        sudo apt-get -y update && sudo apt-get install -y libev-dev tar wget libevent-dev build-essential libnet-ifconfig-wrapper-perl cmake python-pip libjson-c-dev curl valgrind zlib1g-dev python-webpy qt5-default qt5-qmake libssl-dev spawn-fcgi python-flup libpcre3-dev npm nodejs-legacy libgif-dev wine
+        sudo apt-get -y update && sudo apt-get install -y libev-dev tar wget libevent-dev build-essential libnet-ifconfig-wrapper-perl cmake python-pip libjson-c-dev curl valgrind zlib1g-dev python-webpy qt5-default qt5-qmake spawn-fcgi python-flup libpcre3-dev npm node-gyp nodejs libgif-dev nodejs-dev unzip libssl-dev vim wine
+
         if [ ! -f "cb.deb" ]; then
             wget -O cb.deb http://packages.couchbase.com/releases/4.5.0/couchbase-server-enterprise_4.5.0-ubuntu14.04_amd64.deb
         fi
         sudo dpkg -i cb.deb
         git clone https://github.com/couchbase/libcouchbase.git
-        cd libcouchbase && git checkout 2.7.0 && cmake . && make && sudo make install && cd ..
-        wget http://packages.couchbase.com/clients/c/libcouchbase-2.5.8_ubuntu1404_amd64.tar && tar xvf *.tar && cd libcouchbase-2.5.8_ubuntu1404_amd64/ && sudo dpkg -i *.deb && cd ..
-        sudo pip install couchbase
+        cd libcouchbase && git checkout 2.9.0 && cmake . && make && sudo make install && sudo ldconfig && cd ..
+        sudo pip install couchbase==2.2.4
+        # clone
+        clone
         # hs download
         hearthstone_download
         # couchbase
